@@ -9,7 +9,7 @@
 
     <label class="sidebar-label">Навигация</label>
     <div class="sl-sideleft-menu">
-        <a href="index.html" class="sl-menu-link active">
+        <a href="{{url('/')}}" class="sl-menu-link">
             <div class="sl-menu-item">
                 <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
                 <span class="menu-item-label">Панель управления</span>
@@ -56,6 +56,20 @@
             <li class="nav-item"><a href="form-validation.html" class="nav-link">Form Validation</a></li>
             <li class="nav-item"><a href="form-wizards.html" class="nav-link">Form Wizards</a></li>
             <li class="nav-item"><a href="form-editor-text.html" class="nav-link">Text Editor</a></li>
+        </ul>
+        <a href="#" class="sl-menu-link">
+            <div class="sl-menu-item">
+                <i class="menu-item-icon fa fa-gears tx-24"></i>
+                <span class="menu-item-label">Настройки</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{route('settings.user')}}" class="nav-link">Пользователи</a></li>
+            <li class="nav-item"><a href="{{route('settings.role')}}" class="nav-link">Роли</a></li>
+            <li class="nav-item"><a href="{{url('/employee/list')}}" class="nav-link">Сотрудники</a></li>
+            <li class="nav-item"><a href="form-validation.html" class="nav-link">Отделы</a></li>
+            <li class="nav-item"><a href="form-wizards.html" class="nav-link">Должности</a></li>
         </ul>
     </div><!-- sl-sideleft-menu -->
 
