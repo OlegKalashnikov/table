@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('settings/roles/create', 'RoleController@create')->name('settings.role.create');
     Route::post('settings/roles/add', 'RoleController@store')->name('settings.role.store');
     Route::get('settings/roles/{id}/edit', 'RoleController@edit')->name('settings.role.edit');
-    Route::patch('settings/roles/update', 'RoleController@update')->name('settings.role.update');
+    Route::patch('settings/roles/{id}/update', 'RoleController@update')->name('settings.role.update');
     Route::delete('settings/roles/{id}/delete', 'RoleController@destroy')->name('settings.role.destroy');
 
     Route::get('/employee/list', function(){
