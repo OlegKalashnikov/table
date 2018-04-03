@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('settings/positions/create', 'PositionController@create')->name('settings.position.create');
     Route::post('settings/positions/add', 'PositionController@store')->name('settings.position.store');
     Route::get('settings/positions/upload', 'PositionController@uploadForm')->name('settings.position.upload');
-    Route::post('settings/positions/upload', 'PositionController@uploadForm');
+    Route::post('settings/positions/upload', 'PositionController@upload');
     Route::get('settings/positions/{id}/edit', 'PositionController@edit')->name('settings.position.edit');
     Route::patch('settings/positions/{id}/update', 'PositionController@update')->name('settings.position.update');
     Route::delete('settings/positions/{id}/delete', 'PositionController@destroy')->name('settings.position.destroy');

@@ -17,34 +17,42 @@
 
     <div class="sl-pagebody">
         <div class="sl-page-title">
-            <h5>Form Elements</h5>
-            <p>Forms are used to collect user information with different element types of input, select, checkboxes, radios and more.</p>
+            <h5>Загрузка данных</h5>
+            <p>csv, xls, xlsx</p>
         </div><!-- sl-page-title -->
 
-        <div class="card pd-20 pd-sm-40 mg-t-50">
-            <h6 class="card-body-title">File Browser</h6>
-            <p class="mg-b-20 mg-sm-b-30">A custom styled file browser.</p>
+        <div class="row row-sm mg-t-20">
+            <div class="col-xl-6 mg-t-25 mg-xl-t-0">
+                <div class="card pd-20 pd-sm-40 form-layout form-layout-5">
+                    <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-20">Загрузка списка должностей</h6>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-            <div class="row">
-                <div class="col-lg-3">
-                    <label class="custom-file">
-                        <input type="file" id="file" class="custom-file-input">
-                        <span class="custom-file-control"></span>
-                    </label>
-                </div><!-- col -->
-                <div class="col-lg-3 mg-t-40 mg-lg-t-0">
-                    <label class="custom-file">
-                        <input type="file" id="file2" class="custom-file-input">
-                        <span class="custom-file-control custom-file-control-primary"></span>
-                    </label>
-                </div><!-- col -->
-                <div class="col-lg-3 mg-t-40 mg-lg-t-0">
-                    <label class="custom-file">
-                        <input type="file" class="custom-file-input">
-                        <span class="custom-file-control custom-file-control-inverse"></span>
-                    </label>
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- card -->
+                    <form action="{{route('settings.position.upload')}}" method="POST" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="row row-xs">
+                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                <input type="file" class="form-control-file" name="upload">
+                            </div>
+                        </div><!-- row -->
+                        <div class="row row-xs mg-t-30">
+                            <div class="col-sm-8 mg-l-auto">
+                                <div class="form-layout-footer">
+                                    <button type="submit" class="btn btn-info mg-r-5">Загрузить</button>
+                                    <a href="{{route('settings.position')}}" class="btn btn-secondary">Назад</a>
+                                </div><!-- form-layout-footer -->
+                            </div><!-- col-8 -->
+                        </div>
+                    </form>
+                </div><!-- card -->
+            </div><!-- col-6 -->
+        </div><!-- row -->
 
 @endsection
