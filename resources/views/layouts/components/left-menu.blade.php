@@ -69,7 +69,7 @@
             <li class="nav-item"><a href="{{route('settings.role')}}" class="nav-link">Роли</a></li>
             <li class="nav-item"><a href="{{url('/employee/list')}}" class="nav-link">Сотрудники</a></li>
             <li class="nav-item"><a href="form-validation.html" class="nav-link">Отделы</a></li>
-            <li class="nav-item"><a href="form-wizards.html" class="nav-link">Должности</a></li>
+            <li class="nav-item"><a href="{{route('settings.position')}}" class="nav-link">Должности</a></li>
         </ul>
     </div><!-- sl-sideleft-menu -->
 

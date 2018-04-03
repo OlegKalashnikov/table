@@ -36,6 +36,19 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('settings/roles/{id}/update', 'RoleController@update')->name('settings.role.update');
     Route::delete('settings/roles/{id}/delete', 'RoleController@destroy')->name('settings.role.destroy');
 
+    /*
+     * Должности
+     * */
+    Route::get('settings/positions', 'PositionController@index')->name('settings.position');
+    Route::get('settings/positions/create', 'PositionController@create')->name('settings.position.create');
+    Route::post('settings/positions/add', 'PositionController@store')->name('settings.position.store');
+    Route::get('settings/positions/upload', 'PositionController@uploadForm')->name('settings.position.upload');
+    Route::post('settings/positions/upload', 'PositionController@uploadForm');
+    Route::get('settings/positions/{id}/edit', 'PositionController@edit')->name('settings.position.edit');
+    Route::patch('settings/positions/{id}/update', 'PositionController@update')->name('settings.position.update');
+    Route::delete('settings/positions/{id}/delete', 'PositionController@destroy')->name('settings.position.destroy');
+
+
     Route::get('/employee/list', function(){
         return view('settings.employee.show');
     });
