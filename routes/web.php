@@ -60,10 +60,17 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('settings/departments/{id}/update', 'DepartmentController@update')->name('settings.department.update');
     Route::delete('settings/departments/{id}/delete', 'DepartmentController@destroy')->name('settings.department.destroy');
 
-
-    Route::get('/employee/list', function(){
-        return view('settings.employee.show');
-    });
+    /*
+     * Сотрудники
+     * */
+    Route::get('settings/employees', 'EmployeeController@index')->name('settings.employee');
+    Route::get('settings/employees/create', 'EmployeeController@create')->name('settings.employee.create');
+    Route::post('settings/employees/add', 'EmployeeController@store')->name('settings.employee.store');
+    Route::get('settings/employees/upload', 'EmployeeController@uploadForm')->name('settings.employee.upload');
+    Route::post('settings/employees/upload', 'EmployeeController@upload');
+    Route::get('settings/employees/{id}/edit', 'EmployeeController@edit')->name('settings.employee.edit');
+    Route::patch('settings/employees/{id}/update', 'EmployeeController@update')->name('settings.employee.update');
+    Route::delete('settings/employees/{id}/delete', 'EmployeeController@destroy')->name('settings.employee.destroy');
 
 });
 

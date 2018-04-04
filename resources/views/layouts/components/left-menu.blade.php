@@ -67,7 +67,7 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="{{route('settings.user')}}" class="nav-link">Пользователи</a></li>
             <li class="nav-item"><a href="{{route('settings.role')}}" class="nav-link">Роли</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Сотрудники</a></li>
+            <li class="nav-item"><a href="{{route('settings.employee')}}" class="nav-link">Сотрудники</a></li>
             <li class="nav-item"><a href="{{route('settings.department')}}" class="nav-link">Подразделения</a></li>
             <li class="nav-item"><a href="{{route('settings.position')}}" class="nav-link">Должности</a></li>
         </ul>
