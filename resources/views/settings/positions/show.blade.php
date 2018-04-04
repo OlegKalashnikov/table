@@ -66,8 +66,8 @@
                             <td>{{$position->position}}</td>
                             <td>{{$position->category}}</td>
                             <td>
-                                <a href="" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>
-                                <a href="" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>
+                                <a href="{{route('settings.position.edit', $position->id)}}" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>
+                                <a href="" data-toggle="modal" data-target="#modaldestroy" class="btn btn-outline-danger btn-icon" data-modalid="{{$position->id}}"><div><i class="fa fa-trash"></i></div></a>
                             </td>
                         </tr>
                     @endforeach
@@ -76,28 +76,62 @@
             </div><!-- table-wrapper -->
         </div><!-- card -->
 
+        <div id="modaldestroy" class="modal fade">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content bd-0 tx-14">
+                    <div class="modal-header pd-x-20">
+                        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Уведомление</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body pd-20">
+                        <p class="mg-b-5">Вы действительно хотите удалить запись?</p>
+                        <form action="{{route('settings.position.destroy', 'position')}}" method="POST">
+                            {{method_field('delete')}}
+                            {{csrf_field()}}
+                            <input type="hidden" id="id" value="" name="id">
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-danger pd-x-20">Удалить</button>
+                        <button type="button" class="btn btn-secondary pd-x-20" data-dismiss="modal">Закрыть</button>
+                    </div>
+                    </form>
+                </div>
+            </div><!-- modal-dialog -->
+        </div><!-- modal -->
+
 @endsection
 
-        @section('js-page')
-            <script src="{{asset('js/jquery.dataTables.js')}}"></script>
-            <script src="{{asset('js/select2.min.js')}}"></script>
+@section('js-page')
+    <script src="{{asset('js/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('js/select2.min.js')}}"></script>
 
-            <script>
-                $(function(){
-                    'use strict';
+    <script>
+        $('#modaldestroy').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('modalid');
+            var modal = $(this);
+            modal.find('.modal-body #id').val(id);
+        })
+    </script>
 
-                    $('#datatable1').DataTable({
-                        responsive: true,
-                        language: {
-                            searchPlaceholder: 'Поиск...',
-                            sSearch: '',
-                            lengthMenu: '_MENU_ записей/на странице',
-                        }
-                    });
+    <script>
+        $(function(){
+            'use strict';
 
-                    // Select2
-                    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Поиск...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ записей/на странице',
+                }
+            });
 
-                });
-            </script>
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
 @endsection

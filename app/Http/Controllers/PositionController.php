@@ -57,4 +57,28 @@ class PositionController extends Controller
 
         return redirect()->route('settings.position')->with('success', 'Должность успешно создана');
     }
+
+    public function edit($id){
+        return view('settings.positions.edit', [
+            'positions' => Position::find($id)
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        request()->validate([
+            'position' => 'required|max:100',
+            'category' => 'required|max:254'
+        ]);
+
+        $position = Position::find($id);
+        $position->update($request->all());
+
+        return redirect()->route('settings.position')->with('success', 'Должность успешно обновлена');
+    }
+
+    public function destroy(Request $request){
+        $position = Position::find($request->id);
+        $position->delete();
+        return back()->with('success', 'Должность успешно удалена');
+    }
 }
