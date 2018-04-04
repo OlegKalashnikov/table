@@ -48,6 +48,18 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('settings/positions/{id}/update', 'PositionController@update')->name('settings.position.update');
     Route::delete('settings/positions/{id}/delete', 'PositionController@destroy')->name('settings.position.destroy');
 
+    /*
+     * Подразделения
+     * */
+    Route::get('settings/departments', 'DepartmentController@index')->name('settings.department');
+    Route::get('settings/departments/create', 'DepartmentController@create')->name('settings.department.create');
+    Route::post('settings/departments/add', 'DepartmentController@store')->name('settings.department.store');
+    Route::get('settings/departments/upload', 'DepartmentController@uploadForm')->name('settings.department.upload');
+    Route::post('settings/departments/upload', 'DepartmentController@upload');
+    Route::get('settings/departments/{id}/edit', 'DepartmentController@edit')->name('settings.department.edit');
+    Route::patch('settings/departments/{id}/update', 'DepartmentController@update')->name('settings.department.update');
+    Route::delete('settings/departments/{id}/delete', 'DepartmentController@destroy')->name('settings.department.destroy');
+
 
     Route::get('/employee/list', function(){
         return view('settings.employee.show');
