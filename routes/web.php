@@ -72,6 +72,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('settings/employees/{id}/update', 'EmployeeController@update')->name('settings.employee.update');
     Route::delete('settings/employees/{id}/delete', 'EmployeeController@destroy')->name('settings.employee.destroy');
 
+    /*
+     * Мои сотрудники
+     * */
+    Route::get('/my/employee', 'MyemployeeController@index')->name('my.employee');
+    Route::get('/my/employee/create', 'MyemployeeController@create')->name('my.employee.create');
+    Route::post('/my/employee/add', 'MyemployeeController@store')->name('my.employee.store');
 });
 
 Auth::routes();

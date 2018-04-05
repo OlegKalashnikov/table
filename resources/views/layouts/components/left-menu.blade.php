@@ -43,20 +43,12 @@
             <li class="nav-item"><a href="form-wizards.html" class="nav-link">Form Wizards</a></li>
             <li class="nav-item"><a href="form-editor-text.html" class="nav-link">Text Editor</a></li>
         </ul>
-        <a href="#" class="sl-menu-link">
+        <a href="{{route('my.employee')}}" class="sl-menu-link">
             <div class="sl-menu-item">
-                <i class="menu-item-icon icon ion-person-stalker tx-24"></i>
+                <i class="menu-item-icon icon ion-person-stalker tx-22"></i>
                 <span class="menu-item-label">Сотрудники</span>
-                <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="{{url('/employee/list')}}" class="nav-link">Form Elements</a></li>
-            <li class="nav-item"><a href="form-layouts.html" class="nav-link">Form Layouts</a></li>
-            <li class="nav-item"><a href="form-validation.html" class="nav-link">Form Validation</a></li>
-            <li class="nav-item"><a href="form-wizards.html" class="nav-link">Form Wizards</a></li>
-            <li class="nav-item"><a href="form-editor-text.html" class="nav-link">Text Editor</a></li>
-        </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
                 <i class="menu-item-icon fa fa-gears tx-24"></i>
