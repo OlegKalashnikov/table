@@ -47,6 +47,8 @@
             <li class="nav-item"><a href="{{route('settings.department')}}" class="nav-link">Подразделения</a></li>
             <li class="nav-item"><a href="{{route('settings.position')}}" class="nav-link">Должности</a></li>
             <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Типы графиков</a></li>
+            <li class="nav-item"><a href="{{route('settings.absence')}}" class="nav-link">Типы невыходы</a></li>
+            <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Производственный календарь</a></li>
         </ul>
     </div><!-- sl-sideleft-menu -->
 

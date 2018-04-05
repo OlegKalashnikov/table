@@ -45,6 +45,10 @@ class TypeController extends Controller
         return redirect()->route('settings.type')->with('success', 'Тип графика успешно обновлен');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Request $request){
         $type = Type::find($request->id);
 

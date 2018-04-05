@@ -81,6 +81,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('settings/types/{id}/delete', 'TypeController@destroy')->name('settings.type.destroy');
 
     /*
+     * Вид невыхода на работу
+     * */
+    Route::get('settings/absence', 'AbsenceController@index')->name('settings.absence');
+    Route::post('settings/absence/add', 'AbsenceController@store')->name('settings.absence.store');
+    Route::patch('settings/absence/{id}/update', 'AbsenceController@update')->name('settings.absence.update');
+    Route::delete('settings/absence/{id}/delete', 'AbsenceController@destroy')->name('settings.absence.destroy');
+    /*
      * Мои сотрудники
      * */
     Route::get('/my/employee', 'MyemployeeController@index')->name('my.employee');
