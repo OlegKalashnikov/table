@@ -78,6 +78,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/my/employee', 'MyemployeeController@index')->name('my.employee');
     Route::get('/my/employee/create', 'MyemployeeController@create')->name('my.employee.create');
     Route::post('/my/employee/add', 'MyemployeeController@store')->name('my.employee.store');
+    Route::get('my/employees/{id}/edit', 'MyemployeeController@edit')->name('my.employee.edit');
+    Route::patch('my/employees/{id}/update', 'MyemployeeController@update')->name('my.employee.update');
+    Route::delete('my/employees/{id}/delete', 'MyemployeeController@destroy')->name('my.employee.destroy');
 });
 
 Auth::routes();

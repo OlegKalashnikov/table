@@ -55,7 +55,10 @@
                                 <td>{{$employee->position->position}}</td>
                                 <td>{{$employee->department->department}}</td>
                                 <td>{{$employee->rate}}</td>
-                                <td>{{$employee->rate}}</td>
+                                <td>
+                                    <a href="{{route('my.employee.edit', $employee->id)}}" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>
+                                    <a href="" data-toggle="modal" data-target="#modaldestroy" class="btn btn-outline-danger btn-icon" data-modalid="{{$employee->id}}"><div><i class="fa fa-trash"></i></div></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -74,7 +77,7 @@
                     </div>
                     <div class="modal-body pd-20">
                         <p class="mg-b-5">Вы действительно хотите удалить запись?</p>
-                        <form action="{{route('settings.employee.destroy', 'employee')}}" method="POST">
+                        <form action="{{route('my.employee.destroy', 'myemployee')}}" method="POST">
                             {{method_field('delete')}}
                             {{csrf_field()}}
                             <input type="hidden" id="id" value="" name="id">

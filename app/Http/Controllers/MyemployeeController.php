@@ -39,8 +39,6 @@ class MyemployeeController extends Controller
 
         $user_id = Auth::user()->id;
 
-        //dd($request->all());
-
         Myemployee::create([
             'employee_id'   => $request->employee_id,
             'position_id'   => $request->position_id,
@@ -50,5 +48,44 @@ class MyemployeeController extends Controller
         ]);
 
         return back();
+    }
+
+    public function edit($id){
+        $myEmployee = Myemployee::find($id);
+        return view('employee.edit', [
+            'myEmployees' => $myEmployee,
+            'employees'     => Employee::all(),
+            'positions'     => Position::all(),
+            'departments'   => Department::all(),
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        request()->validate([
+            'employee_id' => 'required',
+            'position_id' => 'required',
+            'department_id' => 'required',
+            'rate' => 'required',
+        ]);
+
+        $myEmployee = Myemployee::find($id);
+        $user_id = Auth::user()->id;
+
+        $myEmployee->update([
+            'employee_id'   => $request->employee_id,
+            'position_id'   => $request->position_id,
+            'department_id' => $request->department_id,
+            'rate'          => $request->rate,
+            'user_id'       => $user_id
+        ]);
+
+        return redirect()->route('my.employee')->with('success', 'Данные успешно обновленны');
+    }
+
+    public function destroy(Request $request){
+        $myEmployee = Myemployee::find($request->id);
+        $myEmployee->delete();
+
+        return redirect()->route('my.employee')->with('success', 'Данные успешно удалены');
     }
 }
