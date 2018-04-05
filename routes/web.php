@@ -73,6 +73,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('settings/employees/{id}/delete', 'EmployeeController@destroy')->name('settings.employee.destroy');
 
     /*
+     * Типы графиков
+     * */
+    Route::get('settings/types', 'TypeController@index')->name('settings.type');
+    Route::post('settings/types/add', 'TypeController@store')->name('settings.type.store');
+    Route::patch('settings/types/{id}/update', 'TypeController@update')->name('settings.type.update');
+    Route::delete('settings/types/{id}/delete', 'TypeController@destroy')->name('settings.type.destroy');
+
+    /*
      * Мои сотрудники
      * */
     Route::get('/my/employee', 'MyemployeeController@index')->name('my.employee');
@@ -81,6 +89,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('my/employees/{id}/edit', 'MyemployeeController@edit')->name('my.employee.edit');
     Route::patch('my/employees/{id}/update', 'MyemployeeController@update')->name('my.employee.update');
     Route::delete('my/employees/{id}/delete', 'MyemployeeController@destroy')->name('my.employee.destroy');
+
+    /*
+     * Графики
+     * */
+    Route::get('graphics', 'GraphicsController@index')->name('graphics');
 });
 
 Auth::routes();

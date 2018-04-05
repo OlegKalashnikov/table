@@ -15,7 +15,7 @@
                 <span class="menu-item-label">Панель управления</span>
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="" class="sl-menu-link">
+        <a href="{{route('graphics')}}" class="sl-menu-link">
             <div class="sl-menu-item">
                 <i class="menu-item-icon icon ion-stats-bars tx-22"></i>
                 <span class="menu-item-label">График</span>
@@ -46,6 +46,7 @@
             <li class="nav-item"><a href="{{route('settings.employee')}}" class="nav-link">Сотрудники</a></li>
             <li class="nav-item"><a href="{{route('settings.department')}}" class="nav-link">Подразделения</a></li>
             <li class="nav-item"><a href="{{route('settings.position')}}" class="nav-link">Должности</a></li>
+            <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Типы графиков</a></li>
         </ul>
     </div><!-- sl-sideleft-menu -->
 
