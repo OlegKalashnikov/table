@@ -16,7 +16,7 @@ class CreateAbsencesTable extends Migration
         Schema::create('absences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('absence');
-            $table->boolean('holiday');
+            $table->boolean('holiday')->default(0);
             $table->string('reduction');
             $table->timestamps();
         });

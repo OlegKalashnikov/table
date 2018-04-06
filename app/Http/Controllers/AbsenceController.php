@@ -22,8 +22,8 @@ class AbsenceController extends Controller
      */
     public function store(Request $request){
         request()->validate([
-            'absences' => 'required|max:254',
-            'holiday' => 'required',
+            'absence' => 'required|max:254',
+            'reduction' => 'required|max:5',
         ]);
 
         Absence::create($request->all());
@@ -37,8 +37,8 @@ class AbsenceController extends Controller
      */
     public function update(Request $request){
         request()->validate([
-            'absences' => 'required|max:254',
-            'holiday' => 'required',
+            'absence' => 'required|max:254',
+            'reduction' => 'required|max:5',
         ]);
 
         $absences = Absence::find($request->id);
@@ -52,6 +52,6 @@ class AbsenceController extends Controller
 
         $absences->delete();
 
-        return redirect()->route('settings.absence')->with('success', 'Вид неявкиуспешно удален');
+        return redirect()->route('settings.absence')->with('success', 'Вид неявки успешно удален');
     }
 }
