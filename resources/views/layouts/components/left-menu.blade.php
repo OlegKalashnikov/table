@@ -41,14 +41,19 @@
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="{{route('settings.user')}}" class="nav-link">Пользователи</a></li>
-            <li class="nav-item"><a href="{{route('settings.role')}}" class="nav-link">Роли</a></li>
-            <li class="nav-item"><a href="{{route('settings.employee')}}" class="nav-link">Сотрудники</a></li>
-            <li class="nav-item"><a href="{{route('settings.department')}}" class="nav-link">Подразделения</a></li>
-            <li class="nav-item"><a href="{{route('settings.position')}}" class="nav-link">Должности</a></li>
-            <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Типы графиков</a></li>
-            <li class="nav-item"><a href="{{route('settings.absence')}}" class="nav-link">Типы невыходы</a></li>
-            <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Производственный календарь</a></li>
+            @if(\App\User::role() == 1)
+                <li class="nav-item"><a href="{{route('settings.user')}}" class="nav-link">Пользователи</a></li>
+                <li class="nav-item"><a href="{{route('settings.role')}}" class="nav-link">Роли</a></li>
+                <li class="nav-item"><a href="{{route('settings.employee')}}" class="nav-link">Сотрудники</a></li>
+                <li class="nav-item"><a href="{{route('settings.department')}}" class="nav-link">Подразделения</a></li>
+                <li class="nav-item"><a href="{{route('settings.position')}}" class="nav-link">Должности</a></li>
+            @endif
+            @if((\App\User::role() == 1) || (\App\User::role() == 2))
+                <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Типы графиков</a></li>
+                <li class="nav-item"><a href="{{route('settings.graphic')}}" class="nav-link">Графики</a></li>
+                <li class="nav-item"><a href="{{route('settings.absence')}}" class="nav-link">Типы невыходы</a></li>
+            @endif
+            <li class="nav-item"><a href="{{route('settings.type')}}" class="nav-link">Календарь</a></li>
         </ul>
     </div><!-- sl-sideleft-menu -->
 

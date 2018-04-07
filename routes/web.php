@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function(){
     * */
     Route::get('settings/users', 'UserController@index')->name('settings.user');
     Route::get('settings/users/create', 'UserController@create')->name('settings.user.create');
+    Route::post('setting/user/add', 'UserController@store')->name('settings.user.store');
 
     /*
      * Роли
@@ -81,6 +82,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('settings/types/{id}/delete', 'TypeController@destroy')->name('settings.type.destroy');
 
     /*
+     * Графики для табеля и графика)
+     * */
+    Route::get('settings/graphic', 'TabelgraphicController@index')->name('settings.graphic');
+    Route::post('settings/graphic/add', 'TabelgraphicController@store')->name('settings.graphic.store');
+    Route::patch('settings/graphic/{id}/update', 'TabelgraphicController@update')->name('settings.graphic.update');
+    Route::delete('settings/graphic/{id}/delete', 'TabelgraphicController@destroy')->name('settings.graphic.destroy');
+
+
+    /*
      * Вид невыхода на работу
      * */
     Route::get('settings/absence', 'AbsenceController@index')->name('settings.absence');
@@ -100,7 +110,7 @@ Route::group(['middleware' => 'auth'], function(){
     /*
      * Графики
      * */
-    Route::get('graphics', 'GraphicsController@index')->name('graphics');
+    Route::get('graphics', 'GraphicController@index')->name('graphics');
 });
 
 Auth::routes();

@@ -20,10 +20,19 @@
                 <a href="{{route('settings.user.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Создание пользователя</a>
             </div>
         </div><!-- sl-page-title -->
-
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Общий список</h6>
-
+            @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <i class="icon ion-ios-checkmark alert-icon tx-18 mg-t-5 mg-xs-t-0"></i>
+                        <span>{{session('success')}}</span>
+                    </div><!-- d-flex -->
+                </div>
+            @endif
             <div class="table-wrapper">
                 <table id="datatable1" class="table display responsive nowrap">
                     <thead>
@@ -39,7 +48,7 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->login}}</td>
-                                <td>{{$user->id}}</td>
+                                <td>{{$user->role}}</td>
                                 <td>
                                     <a href="" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>
                                     <a href="" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></a>

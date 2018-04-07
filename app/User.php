@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'login', 'password',
+        'name', 'login', 'password', 'role_id'
     ];
 
     /**
@@ -26,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function role(){
+        return User::where('id', Auth::user()->id)->value('role_id');
+    }
+
 }

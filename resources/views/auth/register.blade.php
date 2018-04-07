@@ -65,6 +65,7 @@
                     </span>
                 @endif
             </div><!-- form-group -->
+
             <div class="form-group">
                 <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Введите ваш пароль">
                 @if ($errors->has('password'))
