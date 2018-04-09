@@ -62,7 +62,9 @@
                                 <th>{{$graphic->user->name}}</th>
                             @endif
                             <td>
-                                {{--<a href="" data-toggle="modal" data-target="#modaledit" class="btn btn-outline-primary btn-icon" data-modalid="{{$type->id}}" data-modaltype="{{$type->type}}"><div><i class="fa fa-edit"></i></div></a>--}}
+                                @if(\App\User::role() == 1)
+                                    <a href="" data-toggle="modal" data-target="#modaledit" class="btn btn-outline-primary btn-icon" data-modalid="{{$graphic->id}}" data-modaltype="{{$graphic->type_id}}"><div><i class="fa fa-edit"></i></div></a>
+                                @endif
                                 <a href="" data-toggle="modal" data-target="#modaldestroy" class="btn btn-outline-danger btn-icon" data-modalid="{{$graphic->id}}"><div><i class="fa fa-trash"></i></div></a>
                             </td>
                         </tr>
@@ -96,6 +98,18 @@
                                         <label class="col-sm-4 form-control-label">Продолжительность рабочего дня: <span class="tx-danger">*</span></label>
                                         <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                                             <input type="text" name="working_hours" class="form-control" placeholder="Например: 8, 6:19">
+                                        </div>
+                                    </div>
+                                    <div class="row mg-t-20">
+                                        <label class="col-sm-4 form-control-label">Начало рабочего дня: <span class="tx-danger">*</span></label>
+                                        <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                            <input type="text" name="from" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mg-t-20">
+                                        <label class="col-sm-4 form-control-label">Конец рабочего дня: <span class="tx-danger">*</span></label>
+                                        <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                            <input type="text" name="before" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mg-t-20">

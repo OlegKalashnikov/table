@@ -15,7 +15,7 @@ class TabelgraphicController extends Controller
      */
     public function index(){
         if(User::role() == 1){
-            $graphic = Tabelgraphic::all();
+            $graphic = Tabelgraphic::orderBy('user_id', 'asc')->get();
         }else{
             $graphic = Tabelgraphic::where('user_id', Auth::user()->id)->get();
         }
@@ -44,6 +44,8 @@ class TabelgraphicController extends Controller
             'monthly_rate' => $request->monthly_rate,
             'type_id' => $request->type_id,
             'user_id' => Auth::user()->id,
+            'from' => $request->from,
+            'before' => $request->before,
         ]);
 
         return redirect()->route('settings.graphic')->with('success', 'График успешно создан');
@@ -55,11 +57,22 @@ class TabelgraphicController extends Controller
      */
     public function update(Request $request){
         request()->validate([
-            'type' => 'required|max:254'
+            'name' => 'required',
+            'type_id' => 'required',
+            'working_hours' => 'required',
+            'monthly_rate' => 'required',
         ]);
 
         $type = Type::find($request->id);
-        $type->update($request->all());
+        $type->update([
+            'name' => $request->name,
+            'working_hours' => $request->working_hours,
+            'monthly_rate' => $request->monthly_rate,
+            'type_id' => $request->type_id,
+            'user_id' => Auth::user()->id,
+            'from' => $request->from,
+            'before' => $request->before,
+        ]);
 
         return redirect()->route('settings.type')->with('success', 'Тип графика успешно обновлен');
     }
