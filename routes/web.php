@@ -106,7 +106,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('my/employees/{id}/edit', 'MyemployeeController@edit')->name('my.employee.edit');
     Route::patch('my/employees/{id}/update', 'MyemployeeController@update')->name('my.employee.update');
     Route::delete('my/employees/{id}/delete', 'MyemployeeController@destroy')->name('my.employee.destroy');
-
+    /*
+     * Каледарь для графика и табеля
+     * */
+    Route::get('my/employee/{id}/calendar', 'MyemployeeController@calendar')->name('my.employee.calendar');
+    Route::post('my/employee/event', 'MyemployeeController@calendarEvent')->name('my.employee.event');
     /*
      * Графики
      * */

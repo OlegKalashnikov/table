@@ -6,17 +6,43 @@ use App\Department;
 use App\Employee;
 use App\Myemployee;
 use App\Position;
+use App\Tabelgraphic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MyemployeeController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(){
         return view('employee.show', [
             'myEmployees' => Myemployee::where('user_id', Auth::user()->id)->get()
         ]);
     }
 
+    public function calendar($id){
+        $nameEmployee = Myemployee::find($id);
+        $user_id = Auth::user()->id;
+        return view('employee.calendar', [
+            'myemployee_id' => $id,
+            'nameEmployee' => $nameEmployee,
+            'select' => Tabelgraphic::where('user_id', $user_id)->get(),
+        ]);
+    }
+
+    public function calendarEvent(Request $request){
+        $data = explode(' ', $request->data);
+        if(count($data) == 4){
+            echo 'График';
+        }else{
+            echo 'Табель';
+        }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(){
         $user_id = Auth::user()->id;
         $myEpmloyee = Myemployee::where('user_id', $user_id)->get();
