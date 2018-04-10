@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\Employee;
+use App\Graphic;
 use App\Myemployee;
 use App\Position;
 use App\Tabelgraphic;
@@ -33,8 +34,16 @@ class MyemployeeController extends Controller
 
     public function calendarEvent(Request $request){
         $data = explode(' ', $request->data);
+        //$monthly_rate =
         if(count($data) == 4){
             echo 'График';
+            Graphic::create([
+                'myemployee_id' => $request->myemployee_id,
+                'date' => $request->date,
+                'from' => $data[1],
+                'before' => $data[3],
+                'monthly_rate' => 176
+            ]);
         }else{
             echo 'Табель';
         }
