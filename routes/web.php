@@ -102,6 +102,17 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('settings/absence/add', 'AbsenceController@store')->name('settings.absence.store');
     Route::patch('settings/absence/{id}/update', 'AbsenceController@update')->name('settings.absence.update');
     Route::delete('settings/absence/{id}/delete', 'AbsenceController@destroy')->name('settings.absence.destroy');
+
+    Route::get('/absence/sickleave', 'AbsenceController@showFormSickleave')->name('absence.sickleave');//больничный лист
+    Route::get('/absence/holiday', 'AbsenceController@showFormHoliday')->name('absence.holiday');//отпуск
+    Route::get('/absence/absenteeism', 'AbsenceController@showFormAbsenteeism')->name('absence.absenteeism');//прогул
+    Route::get('/absence/withoutcontent', 'AbsenceController@showFormWithoutcontent')->name('absence.withoutcontent');//без содержания
+    Route::get('/absence/apprenticeship', 'AbsenceController@showFormApprenticeship')->name('absence.apprenticeship');//Ученический отпуск
+    Route::get('/absence/specialization', 'AbsenceController@showFormSpecialization')->name('absence.specialization');//Специализация
+    Route::get('/absence/businesstrip', 'AbsenceController@showFormBusinesstrip')->name('absence.businesstrip');//Командировка
+
+    Route::get('/absence/myemployee/create/{type}', 'AbsenceController@showFormCreate')->name('absence.create');
+
     /*
      * Мои сотрудники
      * */

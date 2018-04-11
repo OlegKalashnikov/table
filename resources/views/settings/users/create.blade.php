@@ -34,7 +34,7 @@
                     <h4 class="header-title m-t-0">Создание пользователя</h4>
 
                     <div class="p-20">
-                        <form role="form" action="{{route('my.employee.store')}}" method="POST">
+                        <form role="form" action="{{route('settings.user.store')}}" method="POST">
                             {{csrf_field()}}
                             <div class="form-group row">
                                 <label for="employee_id" class="col-sm-4 form-control-label">ФИО пользователя:<span class="text-danger">*</span></label>
@@ -67,9 +67,9 @@
                                             <option value="{{$role->id}}">{{$role->description}}</option>
                                         @endforeach
                                     </select>
-                                    @if ($errors->has('login'))
+                                    @if ($errors->has('role_id'))
                                         <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('login') }}</strong>
+                                            <strong>{{ $errors->first('role_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>

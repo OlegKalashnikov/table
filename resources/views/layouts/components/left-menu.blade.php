@@ -28,13 +28,13 @@
                         <i class="zmdi zmdi-assignment-alert"></i><span> Неявки </span> <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="javascript:void(0);">Больничный лист</a></li>
-                        <li><a href="javascript:void(0);">Отпуск</a></li>
-                        <li><a href="javascript:void(0);">Прогул</a></li>
-                        <li><a href="javascript:void(0);">Без содержания</a></li>
-                        <li><a href="javascript:void(0);">Ученический отпуск</a></li>
-                        <li><a href="javascript:void(0);">Специализация</a></li>
-                        <li><a href="javascript:void(0);">Командировка</a></li>
+                        <li><a href="{{route('absence.sickleave')}}">Больничный лист</a></li>
+                        <li><a href="{{route('absence.holiday')}}">Отпуск</a></li>
+                        <li><a href="{{route('absence.absenteeism')}}">Прогул</a></li>
+                        <li><a href="{{route('absence.withoutcontent')}}">Без содержания</a></li>
+                        <li><a href="{{route('absence.apprenticeship')}}">Ученический отпуск</a></li>
+                        <li><a href="{{route('absence.specialization')}}">Специализация</a></li>
+                        <li><a href="{{route('absence.businesstrip')}}">Командировка</a></li>
                     </ul>
                 </li>
 
