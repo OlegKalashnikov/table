@@ -111,6 +111,7 @@ Route::group(['middleware' => 'auth'], function(){
      * */
     Route::get('my/employee/{id}/calendar', 'MyemployeeController@calendar')->name('my.employee.calendar');
     Route::post('my/employee/event', 'MyemployeeController@calendarEvent')->name('my.employee.event');
+    Route::get('calendar', 'MyemployeeController@getJsonData')->name('calendar.init');
     /*
      * Графики
      * */

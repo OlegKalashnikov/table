@@ -49,6 +49,10 @@ class MyemployeeController extends Controller
         }
     }
 
+    public function getJsonData(){
+        return json_encode(Graphic::all());
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
