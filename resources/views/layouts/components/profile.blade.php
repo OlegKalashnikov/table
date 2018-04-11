@@ -1,20 +1,35 @@
-<div class="dropdown">
-    <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-        <span class="logged-name">{{Auth::user()->login}}</span>
-        <img src="{{asset('img/user_icon_default.png')}}" class="wd-32 rounded-circle" alt="">
+<li class="list-inline-item dropdown notification-list">
+    <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+       aria-haspopup="false" aria-expanded="false">
+        <img src="{{asset('img/user_icon_default.png')}}" alt="user" class="rounded-circle">
     </a>
-    <div class="dropdown-menu dropdown-menu-header wd-200">
-        <ul class="list-unstyled user-profile-nav">
-            <li><a href=""><i class="icon ion-ios-person-outline"></i> Профиль</a></li>
-            <li><a href=""><i class="icon ion-ios-gear-outline"></i> Настройки</a></li>
-            <li>
-                <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="icon ion-power"></i> Выход
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-        </ul>
-    </div><!-- dropdown-menu -->
-</div><!-- dropdown -->
+    <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+        <!-- item-->
+        <div class="dropdown-item noti-title">
+            <h5 class="text-overflow"><small>{{Auth::user()->login}}</small> </h5>
+        </div>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="zmdi zmdi-account-circle"></i> <span>Профиль</span>
+        </a>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="zmdi zmdi-settings"></i> <span>Настройки</span>
+        </a>
+
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="zmdi zmdi-lock-open"></i> <span>Заблокировать</span>
+        </a>
+
+        <!-- item-->
+        <a href="{{route('logout')}}" class="dropdown-item notify-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="zmdi zmdi-power"></i> <span>Выход</span>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
+</li>
