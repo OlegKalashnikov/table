@@ -16,6 +16,11 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     /*
+     * Блокировка экрана
+     * */
+    Route::get('user/lockscreen', 'UserController@lockscreen')->name('lockscreen');
+
+    /*
      * Для хлебных крошек
      * */
     Route::get('settings', 'BreadcrumbController@setting')->name('breadcrumb.settings');

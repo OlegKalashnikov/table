@@ -19,6 +19,28 @@
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
+                        <i class="zmdi zmdi-collection-plus"></i> <span> Совмещения </span>
+                    </a>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect">
+                        <i class="zmdi zmdi-assignment-alert"></i><span> Неявки </span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="javascript:void(0);">Больничный лист</a></li>
+                        <li><a href="javascript:void(0);">Отпуск</a></li>
+                        <li><a href="javascript:void(0);">Прогул</a></li>
+                        <li><a href="javascript:void(0);">Без содержания</a></li>
+                        <li><a href="javascript:void(0);">Ученический отпуск</a></li>
+                        <li><a href="javascript:void(0);">Специализация</a></li>
+                        <li><a href="javascript:void(0);">Командировка</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect">
                         <i class="zmdi zmdi-collection-text"></i><span> Отчетные формы </span> <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">

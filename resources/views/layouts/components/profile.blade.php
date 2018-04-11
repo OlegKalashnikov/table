@@ -20,7 +20,7 @@
         </a>
 
         <!-- item-->
-        <a href="javascript:void(0);" class="dropdown-item notify-item">
+        <a href="{{route('lockscreen')}}" class="dropdown-item notify-item">
             <i class="zmdi zmdi-lock-open"></i> <span>Заблокировать</span>
         </a>
 

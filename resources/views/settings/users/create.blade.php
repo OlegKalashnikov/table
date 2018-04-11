@@ -1,96 +1,115 @@
 @extends('layouts.app')
 
 @section('css-page')
-    <!-- vendor css -->
-    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet">
+    <!-- Plugins css-->
+    <link href="{{asset('plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css')}}" rel="stylesheet" />
+    <link href="{{asset('plugins/multiselect/css/multi-select.css')}}"  rel="stylesheet" type="text/css" />
+    <link href="{{asset('plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
-    <nav class="breadcrumb sl-breadcrumb">
-        <a class="breadcrumb-item" href="{{url('/')}}">Главная</a>
-        <a class="breadcrumb-item" href="{{route('breadcrumb.settings')}}">Настройки</a>
-        <a class="breadcrumb-item" href="{{route('settings.user')}}">Пользователи</a>
-        <span class="breadcrumb-item active">Создание пользователя</span>
-    </nav>
-    <div class="sl-pagebody">
-        <div class="sl-page-title">
-            <h5>Пользователи</h5>
-        </div><!-- sl-page-title -->
 
-        <div class="row row-sm mg-t-20">
+    <div class="container-fluid">
 
-            <div class="col-xl-6 mg-t-25 mg-xl-t-0">
-                <div class="card pd-20 pd-sm-40 form-layout form-layout-5">
-                    <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-25">Создание пользователя</h6>
-                    <form action="{{route('settings.user.store')}}" method="POST">
-                        {{csrf_field()}}
-                        <div class="row row-xs">
-                            <label class="col-sm-4 form-control-label"><span class="tx-danger">*</span>ФИО:</label>
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="Введите ФИО пользователя">
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </div><!-- row -->
-                        <div class="row row-xs mg-t-20">
-                            <label class="col-sm-4 form-control-label"><span class="tx-danger">*</span> Логин:</label>
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <input type="text" name="login" class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" value="{{ old('login') }}" placeholder="Введите логин пользователя">
-                                @if ($errors->has('login'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('login') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row row-xs mg-t-20">
-                            <label class="col-sm-4 form-control-label"><span class="tx-danger">*</span> Роль:</label>
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <select name="role_id" id="role_id" class="form-control select2">
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->description}}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('login'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('login') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row row-xs mg-t-20">
-                            <label class="col-sm-4 form-control-label"><span class="tx-danger">*</span> Пароль:</label>
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Введите пароль пользователя">
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row row-xs mg-t-20">
-                            <label class="col-sm-4 form-control-label"><span class="tx-danger">*</span> Повторите пароль:</label>
-                            <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <input type="password" name="password_confirmation" class="form-control" placeholder="Повторите ввод пароля">
-                            </div>
-                        </div><!-- row -->
-                        <div class="row row-xs mg-t-30">
-                            <div class="col-sm-8 mg-l-auto">
-                                <div class="form-layout-footer">
-                                    <button class="btn btn-outline-primary mg-r-5">Создать</button>
-                                    <a href="{{route('settings.user')}}" class="btn btn-outline-secondary">Назад</a>
-                                </div><!-- form-layout-footer -->
-                            </div><!-- col-8 -->
-                        </div>
-                    </form>
-                </div><!-- card -->
-            </div><!-- col-6 -->
-        </div><!-- row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="page-title-box">
 
+                    <ol class="breadcrumb float-right">
+                        <li class="breadcrumb-item"><a href="{{url('/')}}">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('breadcrumb.settings')}}">Настройки</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('settings.user')}}">Пользователи</a></li>
+                        <li class="breadcrumb-item active">Создание ползователя</li>
+                    </ol>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0">Создание пользователя</h4>
+
+                    <div class="p-20">
+                        <form role="form" action="{{route('my.employee.store')}}" method="POST">
+                            {{csrf_field()}}
+                            <div class="form-group row">
+                                <label for="employee_id" class="col-sm-4 form-control-label">ФИО пользователя:<span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="Введите ФИО пользователя">
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="hori-pass1" class="col-sm-4 form-control-label">Логин<span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="login" class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" value="{{ old('login') }}" placeholder="Введите логин пользователя">
+                                    @if ($errors->has('login'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('login') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="hori-pass2" class="col-sm-4 form-control-label">Роль
+                                    <span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <select name="role_id" id="role_id" class="form-control select2">
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}">{{$role->description}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('login'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('login') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="webSite" class="col-sm-4 form-control-label">Пароль<span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Введите пароль пользователя">
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="webSite" class="col-sm-4 form-control-label">Повторите пароль<span class="text-danger">*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Повторите ввод пароля">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                        Создать
+                                    </button>
+                                    <a href="{{route('settings.user')}}" class="btn btn-secondary waves-effect m-l-5">Назад</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+    </div>
 
 @endsection
 

@@ -45,4 +45,9 @@ class UserController extends Controller
         return redirect()->route('settings.user')->with('success', 'Пользователь успешно создан');
     }
 
+    public function lockscreen(){
+        return view('auth.lockscreen');
+    }
+
+
 }

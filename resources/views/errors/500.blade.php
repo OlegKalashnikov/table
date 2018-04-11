@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="app()->getLocale()">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +10,16 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- App title -->
-    <title>{{config('app.name')}}</title>
+    <title>Uplon - Responsive Admin Dashboard Template</title>
 
     <!-- Bootstrap CSS -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- App CSS -->
-    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
     <!-- Modernizr js -->
-    <script src="{{asset('js/modernizr.min.js')}}"></script>
+    <script src="assets/js/modernizr.min.js"></script>
 
 </head>
 
@@ -31,14 +31,13 @@
 <div class="wrapper-page">
 
     <div class="ex-page-content text-center">
-        <div class="text-error">4<span class="ion-sad"></span>4</div>
-        <h3 class="text-uppercase text-white font-600">Страница не найдена</h3>
+        <div class="text-error shadow">500</div>
+        <h3 class="text-uppercase text-white font-600">Internal Server Error</h3>
         <p class="text-white m-t-30">
-            Похоже, вы ошиблись. Не волнуйся ... это случается с лучшими из нас. Возможно, вы захотите проверить
-            подключение к Интернету. Вот небольшой совет, который может помочь вам вернуться на правильный путь.
+            Why not try refreshing your page? or you can contact <a href="" class="text-white text-uppercase"><b>support</b></a>
         </p>
         <br>
-        <a class="btn btn-pink waves-effect waves-light" href="/"> Вернуться на главную</a>
+        <a class="btn btn-pink waves-effect waves-light" href="index.html"> Return Home</a>
 
     </div>
 
