@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Myemployee;
 use App\Tabelgraphic;
 use App\Type;
 use App\User;
@@ -20,17 +21,28 @@ class TabelgraphicController extends Controller
             $graphic = Tabelgraphic::where('user_id', Auth::user()->id)->get();
         }
 
-        return view('settings.graphic.show', [
+        return view('graphics.show', [
             'graphics' => $graphic,
             'types' => Type::all(),
         ]);
     }
+
+    public function create(){
+        $user_id = Auth::user()->id;
+        $myemployees = Myemployee::where('user_id', $user_id)->get();
+        return view('graphics.create', [
+            'myemployees' => $myemployees,
+        ]);
+    }
+
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request){
+        dd($request->all());
+
         request()->validate([
             'name' => 'required',
             'type_id' => 'required',
@@ -48,7 +60,7 @@ class TabelgraphicController extends Controller
             'before' => $request->before,
         ]);
 
-        return redirect()->route('settings.graphic')->with('success', 'График успешно создан');
+        return redirect()->route('graphic')->with('success', 'График успешно создан');
     }
 
     /**
@@ -63,7 +75,7 @@ class TabelgraphicController extends Controller
             'monthly_rate' => 'required',
         ]);
 
-        $type = Type::find($request->id);
+        $type = Tabelgraphic::find($request->id);
         $type->update([
             'name' => $request->name,
             'working_hours' => $request->working_hours,
@@ -74,7 +86,7 @@ class TabelgraphicController extends Controller
             'before' => $request->before,
         ]);
 
-        return redirect()->route('settings.type')->with('success', 'Тип графика успешно обновлен');
+        return redirect()->route('graphic')->with('success', 'График успешно обновлен');
     }
 
     /**
@@ -86,6 +98,6 @@ class TabelgraphicController extends Controller
 
         $tabelgrapthic->delete();
 
-        return redirect()->route('settings.graphic')->with('success', 'График успешно удален');
+        return redirect()->route('graphic')->with('success', 'График успешно удален');
     }    //
 }

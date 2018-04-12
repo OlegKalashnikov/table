@@ -31,8 +31,27 @@
             <div class="col-12">
                 <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                        <a href="{{route('absence.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
-
+                        @if($type == 1)
+                        <a href="{{route('absence.sickleave.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
+                        @if($type == 2)
+                            <a href="{{route('absence.holiday.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
+                        @if($type == 3)
+                            <a href="{{route('absence.absenteeism.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
+                        @if($type == 4)
+                            <a href="{{route('absence.withoutcontent.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
+                        @if($type == 5)
+                            <a href="{{route('absence.apprenticeship.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
+                        @if($type == 6)
+                            <a href="{{route('absence.specialization.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
+                        @if($type == 7)
+                            <a href="{{route('absence.businesstrip.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
+                        @endif
                     </p>
                     <div>
 
@@ -59,6 +78,7 @@
                                     <td>{{$value->myemployee->department->department}}</td>
                                     <td>{{$value->from}}</td>
                                     <td>{{$value->before}}</td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>

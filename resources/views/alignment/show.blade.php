@@ -14,11 +14,11 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="page-title-box">
-                    <h4 class="page-title float-left">Список сотрудников закрепленных за вами</h4>
+                    <h4 class="page-title float-left">Список сотрудников работающих по совмещению</h4>
 
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item"><a href="{{url('/')}}">Главная</a></li>
-                        <li class="breadcrumb-item active">Сотрудники</li>
+                        <li class="breadcrumb-item active">Совмещения</li>
                     </ol>
 
                     <div class="clearfix"></div>
@@ -27,48 +27,46 @@
         </div>
         <!-- end row -->
 
-
         <div class="row">
             <div class="col-12">
                 <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                        <a href="{{route('my.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
-                        <a href="{{route('my.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Заполнение табеля</a>
-                        <a href="{{route('my.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Заполнение графика</a>
-
+                        <a href="{{route('alignment.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление сотрудника</a>
                     </p>
-                    <div>
-
-                    </div>
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>ФИО сотрудника</th>
-                            <th>Должность</th>
-                            <th>Подразделение</th>
-                            <th>Ставка</th>
-                            <th width="120px">Действия</th>
+                            <th rowspan="2">ФИО сотрудника</th>
+                            <th rowspan="2">Должность</th>
+                            <th rowspan="2">Подразделение</th>
+                            <th rowspan="2">Проценты</th>
+                            <th colspan="2" style="text-align: center">Период</th>
+                            <th rowspan="2" width="120px">Действия</th>
+                        </tr>
+                        <tr>
+                            <th>С</th>
+                            <th>По</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($myEmployees as $employee)
+                        @foreach($alignments as $alignmet)
                             <tr>
-                                <td>{{$employee->employee->employee}}</td>
-                                <td>{{$employee->position->position}}</td>
-                                <td>{{$employee->department->department}}</td>
-                                <td>{{$employee->rate}}</td>
-                                <td>
-                                    <a href="{{route('my.employee.edit', $employee->id)}}" title="Редактировать" class="btn waves-effect waves-light btn-info"><i class="fa fa-edit"></i></a>
-                                    <a href="{{route('my.employee.calendar', $employee->id)}}" title="Календарь" class="btn waves-effect waves-light btn-info"><i class="fa fa-calendar-check-o"></i></a>
-                                    <a href="" title="Удалить запись" data-toggle="modal" data-target="#modaldestroy" class="btn waves-effect waves-light btn-danger" data-modalid="{{$employee->id}}"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                <td>{{$alignmet->myemployee->employee->employee}}</td>
+                                <td>{{$alignmet->myemployee->position->position}}</td>
+                                <td>{{$alignmet->myemployee->department->department}}</td>
+                                <td>{{$alignmet->percentages}}</td>
+                                <td>{{$alignmet->from}}</td>
+                                <td>{{$alignmet->before}}</td>
+                                <td></td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div> <!-- end row -->
+
+
 
     </div>
 @endsection
@@ -77,7 +75,7 @@
     <!-- Required datatable js -->
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-        <!-- Buttons examples -->
+    <!-- Buttons examples -->
     <script src="{{asset('plugins/datatables/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/buttons.bootstrap4.min.js')}}"></script>
     <script src="{{asset('plugins/datatables/jszip.min.js')}}"></script>

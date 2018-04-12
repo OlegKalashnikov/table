@@ -18,7 +18,7 @@
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect">
+                    <a href="{{route('alignment')}}" class="waves-effect">
                         <i class="zmdi zmdi-collection-plus"></i> <span> Совмещения </span>
                     </a>
                 </li>
@@ -38,6 +38,11 @@
                     </ul>
                 </li>
 
+                <li class="has_sub">
+                    <a href="{{route('graphic')}}" class="waves-effect">
+                        <i class="zmdi zmdi-equalizer"></i> <span> Графики </span>
+                    </a>
+                </li>
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
@@ -64,7 +69,7 @@
                         @if((\App\User::role() == 1) || (\App\User::role() == 2))
                             <li><a href="{{route('settings.type')}}">Тип графиков</a></li>
                             <li><a href="{{route('settings.absence')}}">Типы невыходов</a></li>
-                            <li><a href="{{route('settings.graphic')}}">Мои графики</a></li>
+                            {{--<li><a href="{{route('settings.graphic')}}">Мои графики</a></li>--}}
                         @endif
                     </ul>
                 </li>

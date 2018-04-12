@@ -89,10 +89,11 @@ Route::group(['middleware' => 'auth'], function(){
     /*
      * Графики для табеля и графика)
      * */
-    Route::get('settings/graphic', 'TabelgraphicController@index')->name('settings.graphic');
-    Route::post('settings/graphic/add', 'TabelgraphicController@store')->name('settings.graphic.store');
-    Route::patch('settings/graphic/{id}/update', 'TabelgraphicController@update')->name('settings.graphic.update');
-    Route::delete('settings/graphic/{id}/delete', 'TabelgraphicController@destroy')->name('settings.graphic.destroy');
+    Route::get('graphic', 'TabelgraphicController@index')->name('graphic');
+    Route::get('graphic/create', 'TabelgraphicController@create')->name('graphic.create');
+    Route::post('graphic/add', 'TabelgraphicController@store')->name('graphic.store');
+    Route::patch('graphic/{id}/update', 'TabelgraphicController@update')->name('graphic.update');
+    Route::delete('graphic/{id}/delete', 'TabelgraphicController@destroy')->name('graphic.destroy');
 
 
     /*
@@ -111,7 +112,31 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/absence/specialization', 'AbsenceController@showFormSpecialization')->name('absence.specialization');//Специализация
     Route::get('/absence/businesstrip', 'AbsenceController@showFormBusinesstrip')->name('absence.businesstrip');//Командировка
 
-    Route::get('/absence/myemployee/create/{type}', 'AbsenceController@showFormCreate')->name('absence.create');
+    Route::get('/absence/sickleave/create', 'AbsenceController@showFormCreateSickleave')->name('absence.sickleave.create');//больничный лист
+    Route::get('/absence/holiday/create', 'AbsenceController@showFormCreateHoliday')->name('absence.holiday.create');//отпуск
+    Route::get('/absence/absenteeism/create', 'AbsenceController@showFormCreateAbsenteeism')->name('absence.absenteeism.create');//прогул
+    Route::get('/absence/withoutcontent/create', 'AbsenceController@showFormCreateWithoutcontent')->name('absence.withoutcontent.create');//без содержания
+    Route::get('/absence/apprenticeship/create', 'AbsenceController@showFormCreateApprenticeship')->name('absence.apprenticeship.create');//Ученический отпуск
+    Route::get('/absence/specialization/create', 'AbsenceController@showFormCreateSpecialization')->name('absence.specialization.create');//Специализация
+    Route::get('/absence/businesstrip/create', 'AbsenceController@showFormCreateBusinesstrip')->name('absence.businesstrip.create');//Командировка
+
+    Route::post('/absence/sickleave/add', 'AbsenceController@storeSickleave')->name('absence.sickleave.add');//больничный лист
+    Route::post('/absence/holiday/add', 'AbsenceController@storeHoliday')->name('absence.holiday.add');//отпуск
+    Route::post('/absence/absenteeism/add', 'AbsenceController@storeAbsenteeism')->name('absence.absenteeism.add');//прогул
+    Route::post('/absence/withoutcontent/add', 'AbsenceController@storeWithoutcontent')->name('absence.withoutcontent.add');//без содержания
+    Route::post('/absence/apprenticeship/add', 'AbsenceController@storeApprenticeship')->name('absence.apprenticeship.add');//Ученический отпуск
+    Route::post('/absence/specialization/add', 'AbsenceController@storeSpecialization')->name('absence.specialization.add');//Специализация
+    Route::post('/absence/businesstrip/add', 'AbsenceController@storeBusinesstrip')->name('absence.businesstrip.add');//Командировка
+
+    /*
+     * Совмещение
+     * */
+
+    Route::get('/alignment', 'AlignmentController@index')->name('alignment');
+    Route::get('/alignment/create', 'AlignmentController@create')->name('alignment.create');
+    Route::post('/alignment/add', 'AlignmentController@store')->name('alignment.store');
+
+
 
     /*
      * Мои сотрудники
