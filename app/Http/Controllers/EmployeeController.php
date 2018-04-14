@@ -9,13 +9,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class EmployeeController extends Controller
 {
     public function index(){
-        return view('settings.employee.show', [
+        return view('directory.employee.show', [
             'employees' => Employee::all(),
         ]);
     }
 
     public function uploadForm(){
-        return view('settings.employee.uploadForm');
+        return view('directory.employee.uploadForm');
     }
 
     public function upload(Request $request){
@@ -35,7 +35,7 @@ class EmployeeController extends Controller
             }
         }
 
-        return redirect()->route('settings.employee')->with([
+        return redirect()->route('directory.employee')->with([
             'success'   => 'Данные успешно загружены',
             'log'       => $ptr
         ]);
@@ -43,7 +43,7 @@ class EmployeeController extends Controller
     }
 
     public function create(){
-        return view('settings.employee.create');
+        return view('directory.employee.create');
     }
 
     public function store(Request $request){
@@ -53,11 +53,11 @@ class EmployeeController extends Controller
 
         Employee::create($request->all());
 
-        return redirect()->route('settings.employee')->with('success', 'Сотрудник успешно создан');
+        return redirect()->route('directory.employee')->with('success', 'Сотрудник успешно создан');
     }
 
     public function edit($id){
-        return view('settings.employee.edit', [
+        return view('directory.employee.edit', [
             'employees' => Employee::find($id)
         ]);
     }
@@ -70,7 +70,7 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $employee->update($request->all());
 
-        return redirect()->route('settings.employee')->with('success', 'Сотрудник успешно обновлен');
+        return redirect()->route('directory.employee')->with('success', 'Сотрудник успешно обновлен');
     }
 
     public function destroy(Request $request){

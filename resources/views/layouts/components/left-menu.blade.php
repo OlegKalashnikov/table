@@ -56,15 +56,28 @@
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-book"></i><span> Справочники </span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('directory.employee')}}">Сотрудники</a></li>
+                        <li><a href="{{route('settings.department')}}">Подразделения</a></li>
+                        <li><a href="{{route('settings.position')}}">Должности</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect">
                         <i class="zmdi zmdi-settings"></i><span> Настройки </span> <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">
                         @if(\App\User::role() == 1)
                             <li><a href="{{route('settings.user')}}">Пользователи</a></li>
                             <li><a href="{{route('settings.role')}}">Роли</a></li>
-                            <li><a href="{{route('settings.employee')}}">Сотрудники</a></li>
-                            <li><a href="{{route('settings.department')}}">Подразделения</a></li>
-                            <li><a href="{{route('settings.position')}}">Должности</a></li>
+                            {{--<li><a href="{{route('settings.employee')}}">Сотрудники</a></li>--}}
+                            {{--<li><a href="{{route('settings.department')}}">Подразделения</a></li>--}}
+                            {{--<li><a href="{{route('settings.position')}}">Должности</a></li>--}}
                         @endif
                         @if((\App\User::role() == 1) || (\App\User::role() == 2))
                             <li><a href="{{route('settings.type')}}">Тип графиков</a></li>

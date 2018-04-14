@@ -33,7 +33,7 @@
             <div class="col-12">
                 <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                        <a href="{{route('settings.user.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Создание пользователя</a>
+                        <a href="{{route('settings.user.create')}}" class="btn btn-outline-primary" ><i class="fa fa-plus"></i> Создание пользователя</a>
 
                     </p>
                     <div>

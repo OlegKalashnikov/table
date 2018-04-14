@@ -69,14 +69,14 @@ Route::group(['middleware' => 'auth'], function(){
     /*
      * Сотрудники
      * */
-    Route::get('settings/employees', 'EmployeeController@index')->name('settings.employee');
-    Route::get('settings/employees/create', 'EmployeeController@create')->name('settings.employee.create');
-    Route::post('settings/employees/add', 'EmployeeController@store')->name('settings.employee.store');
-    Route::get('settings/employees/upload', 'EmployeeController@uploadForm')->name('settings.employee.upload');
-    Route::post('settings/employees/upload', 'EmployeeController@upload');
-    Route::get('settings/employees/{id}/edit', 'EmployeeController@edit')->name('settings.employee.edit');
-    Route::patch('settings/employees/{id}/update', 'EmployeeController@update')->name('settings.employee.update');
-    Route::delete('settings/employees/{id}/delete', 'EmployeeController@destroy')->name('settings.employee.destroy');
+    Route::get('directory/employees', 'EmployeeController@index')->name('directory.employee');
+    Route::get('directory/employees/create', 'EmployeeController@create')->name('directory.employee.create');
+    Route::post('directory/employees/add', 'EmployeeController@store')->name('directory.employee.store');
+    Route::get('directory/employees/upload', 'EmployeeController@uploadForm')->name('directory.employee.upload');
+    Route::post('directory/employees/upload', 'EmployeeController@upload');
+    Route::get('directory/employees/{id}/edit', 'EmployeeController@edit')->name('directory.employee.edit');
+    Route::patch('directory/employees/{id}/update', 'EmployeeController@update')->name('directory.employee.update');
+    Route::delete('directory/employees/{id}/delete', 'EmployeeController@destroy')->name('directory.employee.destroy');
 
     /*
      * Типы графиков
