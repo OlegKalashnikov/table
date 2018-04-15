@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('css-page')
-
+    <!-- Plugins css-->
+    <link href="{{asset('plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -100,7 +101,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-4 form-control-label">Учитывать на праздниках<span class="text-danger">*</span></label>
                             <div class="col-sm-7">
-                                <select name="holiday">
+                                <select name="holiday" class="form-control select2" style="width: 100%">
                                     <option value="1">Да</option>
                                     <option value="0">Нет</option>
                                 </select>
@@ -109,8 +110,51 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="create" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" form="create" class="btn btn-primary">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modaledit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mySmallModalLabel">Htlfrnbhjdfybt данных</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('settings.absence.store')}}" method="POST" id="create">
+                        {{csrf_field()}}
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 form-control-label">Вид неявки<span class="text-danger">*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="absence">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 form-control-label">Сокращение<span class="text-danger">*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="reduction">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 form-control-label">Учитывать на праздниках<span class="text-danger">*</span></label>
+                            <div class="col-sm-7">
+                                <select name="holiday" class="form-control select2" style="width: 100%">
+                                    <option value="1">Да</option>
+                                    <option value="0">Нет</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" form="create" class="btn btn-primary">Сохранить</button>
                 </div>
             </div>
         </div>
@@ -118,7 +162,14 @@
 @endsection
 
 @section('js-page')
-
+    <script src="{{asset('plugins/select2/js/select2.full.min.js')}}" type="text/javascript"></script>
+    {{--<script type="text/javascript" src="{{asset('js/jquery.formadvanced.init.js')}}"></script>--}}
+    <script>
+        $(document).ready(function () {
+            // Select2
+            $(".select2").select2();
+        })
+    </script>
 @endsection
 
 
