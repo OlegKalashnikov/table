@@ -55,7 +55,28 @@ $(document).ready(function () {
         autoclose: true,
         todayHighlight: true
     });
+    jQuery('#datepicker-autoclose-from-edit').datepicker({
+        locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Вс', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+        },
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayHighlight: true
+    });
     jQuery('#datepicker-autoclose-before').datepicker({
+        firstDay: 1,
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayHighlight: true
+    });
+    jQuery('#datepicker-autoclose-before-edit').datepicker({
         firstDay: 1,
         format: "yyyy-mm-dd",
         autoclose: true,

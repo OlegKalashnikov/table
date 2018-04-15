@@ -75,12 +75,14 @@
                         @if(\App\User::role() == 1)
                             <li><a href="{{route('settings.user')}}">Пользователи</a></li>
                             <li><a href="{{route('settings.role')}}">Роли</a></li>
+                            <li><a href="{{route('settings.holidays')}}">Праздничные дни</a></li>
+
                             {{--<li><a href="{{route('settings.employee')}}">Сотрудники</a></li>--}}
                             {{--<li><a href="{{route('settings.department')}}">Подразделения</a></li>--}}
                             {{--<li><a href="{{route('settings.position')}}">Должности</a></li>--}}
                         @endif
                         @if((\App\User::role() == 1) || (\App\User::role() == 2))
-                            <li><a href="{{route('settings.type')}}">Тип графиков</a></li>
+                            {{--<li><a href="{{route('settings.type')}}">Тип графиков</a></li>--}}
                             <li><a href="{{route('settings.absence')}}">Типы невыходов</a></li>
                             {{--<li><a href="{{route('settings.graphic')}}">Мои графики</a></li>--}}
                         @endif

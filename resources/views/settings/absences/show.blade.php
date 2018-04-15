@@ -59,7 +59,7 @@
                                             </td>
                                             <td>
                                                 <button class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#modaledit" data-modalid="{{$absence->id}}" data-modalabsence="{{$absence->absence}}" data-modalholiday="{{$absence->holiday}}" data-modalreduction="{{$absence->reduction}}"><i class="fa fa-edit"></i></button>
-                                                <button class="btn btn-outline-danger waves-effect waves-light" data-toggle="modal" data-target="#modeldestroy" data-modalid="{{$absence->id}}"><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-outline-danger waves-effect waves-light" data-toggle="modal" data-target="#modaldestroy" data-modalid="{{$absence->id}}"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -121,30 +121,32 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="mySmallModalLabel">Htlfrnbhjdfybt данных</h5>
+                    <h5 class="modal-title" id="mySmallModalLabel">Редактирование данных</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('settings.absence.store')}}" method="POST" id="create">
+                    <form action="{{route('settings.absence.update', 'update')}}" method="POST" id="update">
                         {{csrf_field()}}
+                        {{method_field('patch')}}
+                        <input type="hidden" name="id" id="id" value="">
                         <div class="form-group row">
                             <label for="" class="col-sm-4 form-control-label">Вид неявки<span class="text-danger">*</span></label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="absence">
+                                <input type="text" class="form-control" name="absence" id="absence" value="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-4 form-control-label">Сокращение<span class="text-danger">*</span></label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="reduction">
+                                <input type="text" class="form-control" name="reduction" id="reduction" value="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-4 form-control-label">Учитывать на праздниках<span class="text-danger">*</span></label>
                             <div class="col-sm-7">
-                                <select name="holiday" class="form-control select2" style="width: 100%">
+                                <select name="holiday" class="form-control select2" style="width: 100%" id="holiday">
                                     <option value="1">Да</option>
                                     <option value="0">Нет</option>
                                 </select>
@@ -154,7 +156,34 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="submit" form="create" class="btn btn-primary">Сохранить</button>
+                    <button type="submit" form="update" class="btn btn-primary">Обновить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modaldestroy">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mySmallModalLabel">Удаление данных</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Вы действительно хотите удалить эту запись?
+                    </p>
+                    <form action="{{route('settings.absence.destroy', 'absence')}}" method="POST" id="destroy">
+                        {{csrf_field()}}
+                        {{method_field('delete')}}
+                        <input type="hidden" name="id" id="id" value="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" form="destroy" class="btn btn-danger">Удалить</button>
                 </div>
             </div>
         </div>
@@ -168,8 +197,30 @@
         $(document).ready(function () {
             // Select2
             $(".select2").select2();
+        });
+        {{--//Edit--}}
+        $('#modaledit').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('modalid');
+            var absence = button.data('modalabsence');
+            var holiday = button.data('modalholiday');
+            var reduction = button.data('modalreduction');
+            var modal = $(this);
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #absence').val(absence);
+            modal.find('.modal-body #reduction').val(reduction);
+            modal.find('.modal-body #holiday').val(holiday).trigger('change');
         })
+
+        $('#modaldestroy').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('modalid');
+            var modal = $(this);
+            modal.find('.modal-body #id').val(id);
+        })
+
     </script>
+
 @endsection
 
 

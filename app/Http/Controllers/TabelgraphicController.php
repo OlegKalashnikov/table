@@ -27,6 +27,15 @@ class TabelgraphicController extends Controller
         ]);
     }
 
+    public function showFormCreateOther(){
+        $user_id = Auth::user()->id;
+        $myemployees = Myemployee::where('user_id', $user_id)->get();
+        return view('graphics.other.create', [
+            'myemployees' => $myemployees,
+        ]);
+    }
+
+
     public function create(){
         $user_id = Auth::user()->id;
         $myemployees = Myemployee::where('user_id', $user_id)->get();

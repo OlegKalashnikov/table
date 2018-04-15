@@ -31,7 +31,16 @@
 
                 <div class="col-12 m-t-20">
                     <p class="text-muted font-13 m-b-10">
-                        <a href="{{route('graphic.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление графика</a>
+                        {{--<a href="{{route('graphic.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Добавление графика</a>--}}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Добавление графика <span class="caret"></span></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('graphic.create.medicalstaff')}}">Для медперсонала</a>
+                            <a class="dropdown-item" href="{{route('graphic.create.other')}}">Для прочих</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route('graphic.create.employee')}}">Отдельно для сотрудника</a>
+                        </div>
+                    </div>
                     </p>
 
                     <div class="p-20">

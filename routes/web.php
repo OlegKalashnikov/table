@@ -43,6 +43,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('settings/roles/{id}/delete', 'RoleController@destroy')->name('settings.role.destroy');
 
     /*
+     * Установка праздничных дней
+     * */
+    Route::get('settings/holidays', 'HolidayController@index')->name('settings.holidays');
+    Route::get('settings/holidays/create', 'HolidayController@create')->name('settings.holidays.create');
+    Route::post('settings/holidays/add', 'HolidayController@store')->name('settings.holidays.store');
+    Route::get('settings/holidays/{id}/edit', 'HolidayController@edit')->name('settings.holidays.edit');
+    Route::patch('settings/holidays/{id}/update', 'HolidayController@update')->name('settings.holidays.update');
+    Route::delete('settings/holidays/{id}/delete', 'HolidayController@destroy')->name('settings.holidays.destroy');
+
+    /*
      * Должности
      * */
     Route::get('settings/positions', 'PositionController@index')->name('settings.position');
@@ -81,15 +91,21 @@ Route::group(['middleware' => 'auth'], function(){
     /*
      * Типы графиков
      * */
-    Route::get('settings/types', 'TypeController@index')->name('settings.type');
-    Route::post('settings/types/add', 'TypeController@store')->name('settings.type.store');
-    Route::patch('settings/types/{id}/update', 'TypeController@update')->name('settings.type.update');
-    Route::delete('settings/types/{id}/delete', 'TypeController@destroy')->name('settings.type.destroy');
+//    Route::get('settings/types', 'TypeController@index')->name('settings.type');
+//    Route::post('settings/types/add', 'TypeController@store')->name('settings.type.store');
+//    Route::patch('settings/types/{id}/update', 'TypeController@update')->name('settings.type.update');
+//    Route::delete('settings/types/{id}/delete', 'TypeController@destroy')->name('settings.type.destroy');
+
 
     /*
      * Графики для табеля и графика)
      * */
     Route::get('graphic', 'TabelgraphicController@index')->name('graphic');
+    Route::get('graphic/create/other', 'TabelgraphicController@showFormCreateOther')->name('graphic.create.other');
+    Route::get('graphic/create/medicalstaff', 'TabelgraphicController@showFormCreateMedicalstaff')->name('graphic.create.medicalstaff');
+    Route::get('graphic/create/employee', 'TabelgraphicController@showFormCreateEmployee')->name('graphic.create.employee');
+
+
     Route::get('graphic/create', 'TabelgraphicController@create')->name('graphic.create');
     Route::post('graphic/add', 'TabelgraphicController@store')->name('graphic.store');
     Route::patch('graphic/{id}/update', 'TabelgraphicController@update')->name('graphic.update');
