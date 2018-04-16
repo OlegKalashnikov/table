@@ -250,16 +250,85 @@ class TabelgraphicController extends Controller
         foreach($absenteeisms as $absenteeism){
             $graphicothers = Graphicother::where('myemployee_id', $absenteeism->myemployee_id)
                             ->where('user_id', $user_id)
-                            ->where('date', $absenteeism->from)->get();
-            dump($graphicothers);
-            $graphicother->update([
-                'hours_per_day' =>  $absenteeism->absence_id,
-            ]);
-            //$graphicother->save();
-//            $graphicother->update([
-//                'hours_per_day' => $absenteeism->absence_id,
-//            ]);
+                            ->where('date', $absenteeism->from)
+                            ->get();
+            foreach ($graphicothers as $value){
+                $value->hours_per_day = 'п';
+                $value->save();
+            }
         }
+        /*
+         * Отмечаем без содержания
+         * */
+        foreach($withoutcontent as $value){
+            $graphicothers = Graphicother::where('myemployee_id', $value->myemployee_id)
+                            ->where('user_id', $user_id)
+                            ->where('date', '>=', $value->from)
+                            ->where('date', '<=', $value->before)
+                            ->get();
+            foreach ($graphicothers as $value){
+                $value->hours_per_day = 'б/с';
+                $value->save();
+            }
+        }
+        /*
+         * Отмечаем специализацию
+         * */
+        foreach($specialization as $value){
+            $graphicothers = Graphicother::where('myemployee_id', $value->myemployee_id)
+                            ->where('user_id', $user_id)
+                            ->where('date', '>=', $value->from)
+                            ->where('date', '<=', $value->before)
+                            ->get();
+            foreach ($graphicothers as $value){
+                $value->hours_per_day = 'с';
+                $value->save();
+            }
+        }
+       /*
+         * Отмечаем командировки
+         * */
+        foreach($businesstrip as $value){
+            $graphicothers = Graphicother::where('myemployee_id', $value->myemployee_id)
+                            ->where('user_id', $user_id)
+                            ->where('date', '>=', $value->from)
+                            ->where('date', '<=', $value->before)
+                            ->get();
+            foreach ($graphicothers as $value){
+                $value->hours_per_day = 'к';
+                $value->save();
+            }
+        }
+        /*
+          * Отмечаем отпуск
+          * */
+        foreach($otpusk as $value){
+            $graphicothers = Graphicother::where('myemployee_id', $value->myemployee_id)
+                ->where('user_id', $user_id)
+                ->where('date', '>=', $value->from)
+                ->where('date', '<=', $value->before)
+                ->get();
+            foreach ($graphicothers as $value){
+                $value->hours_per_day = '0';
+                $value->save();
+            }
+        }
+
+        /*
+          * Отмечаем б/л
+          * */
+        foreach($sickleave as $value){
+            $graphicothers = Graphicother::where('myemployee_id', $value->myemployee_id)
+                ->where('user_id', $user_id)
+                ->where('date', '>=', $value->from)
+                ->where('date', '<=', $value->before)
+                ->get();
+            foreach ($graphicothers as $value){
+                $value->hours_per_day = 'б/л';
+                $value->save();
+            }
+        }
+
 
 //        foreach($request->myemployees as $myemployee){
 //            $firstDayMonth = Carbon::now()->firstOfMonth(); //Первый день месяца

@@ -49,7 +49,7 @@
                         <i class="zmdi zmdi-collection-text"></i><span> Отчетные формы </span> <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="javascript:void(0);">График</a></li>
+                        <li><a href="{{route('print.graphics')}}">График</a></li>
                         <li><a href="javascript:void(0);">Табель</a></li>
                     </ul>
                 </li>
