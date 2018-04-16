@@ -17964,7 +17964,7 @@ label {
 .ms-container {
   background: transparent url("../plugins/multiselect/img/multiple-arrow.png") no-repeat 50% 50%;
   width: 100% !important;
-  max-width: 360px !important; }
+  max-width: 700px !important; }
   .ms-container .ms-list {
     box-shadow: none;
     border: 1px solid rgba(43, 61, 81, 0.2); }

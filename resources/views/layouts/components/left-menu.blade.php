@@ -38,11 +38,11 @@
                     </ul>
                 </li>
 
-                <li class="has_sub">
-                    <a href="{{route('graphic')}}" class="waves-effect">
-                        <i class="zmdi zmdi-equalizer"></i> <span> Графики </span>
-                    </a>
-                </li>
+                {{--<li class="has_sub">--}}
+                    {{--<a href="{{route('graphic')}}" class="waves-effect">--}}
+                        {{--<i class="zmdi zmdi-equalizer"></i> <span> Графики </span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
