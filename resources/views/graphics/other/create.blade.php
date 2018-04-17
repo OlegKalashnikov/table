@@ -22,12 +22,12 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="page-title-box">
-                    <h4 class="page-title float-left">Список помесячных графиков</h4>
+                    <h4 class="page-title float-left">Создание графика</h4>
 
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item"><a href="{{url('/')}}">Главная</a></li>
                         <li class="breadcrumb-item"><a href="{{route('graphic')}}">Графики</a></li>
-                        <li class="breadcrumb-item active">Графики</li>
+                        <li class="breadcrumb-item active">Графики немедицинского персонала</li>
                     </ol>
 
                     <div class="clearfix"></div>

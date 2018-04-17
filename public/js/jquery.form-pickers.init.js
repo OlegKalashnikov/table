@@ -89,6 +89,15 @@ $(document).ready(function () {
         multidate: true,
         multidateSeparator: ","
     });
+
+    jQuery('.kov').datepicker({
+        firstDay: 1,
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        multidate: true,
+        multidateSeparator: ","
+    });
+
     jQuery('#date-range').datepicker({
         toggleActive: true
     });

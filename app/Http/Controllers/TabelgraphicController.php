@@ -55,6 +55,20 @@ class TabelgraphicController extends Controller
 
     }
 
+    public function showFormCreateEmployee(){
+        $user_id = Auth::user()->id;
+        $month = Carbon::now()->format('m');
+        $myemployees = Myemployee::where('user_id', $user_id)->get();
+        return view('graphics.employee.create', [
+            'myemployees' => $myemployees,
+            'month' => $month,
+        ]);
+    }
+
+    public function storeEmployee(Request $request){
+        dump($request->all());
+    }
+
     public function storeMedicalstaff(Request $request){
         dump($request->all());
         /*

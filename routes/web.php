@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('graphic/create/medicalstaff', 'TabelgraphicController@showFormCreateMedicalstaff')->name('graphic.create.medicalstaff');
     Route::post('graphic/add/medicalstaff', 'TabelgraphicController@storeMedicalstaff')->name('graphic.add.medicalstaff');
     Route::get('graphic/create/employee', 'TabelgraphicController@showFormCreateEmployee')->name('graphic.create.employee');
+    Route::post('graphic/add/employee', 'TabelgraphicController@storeEmployee')->name('graphic.add.employee');
 
 
     Route::get('graphic/create', 'TabelgraphicController@create')->name('graphic.create');
