@@ -44,6 +44,59 @@ class TabelgraphicController extends Controller
         ]);
     }
 
+    public function showFormCreateMedicalstaff(){
+        $user_id = Auth::user()->id;
+        $month = Carbon::now()->format('m');
+        $myemployees = Myemployee::where('user_id', $user_id)->get();
+        return view('graphics.medicalstaff.create', [
+            'myemployees' => $myemployees,
+            'month' => $month,
+        ]);
+
+    }
+
+    public function storeMedicalstaff(Request $request){
+        dump($request->all());
+        /*
+         * id Пользователя, который добавляет запись
+         * */
+        $user_id = Auth::user()->id;
+        /*
+         * Начало рабочего дня
+         * */
+        $from = $request->from;
+        /*
+         * Конец рабочего дня
+         * */
+        $before = $request->before;
+
+        $daysInMonth = Carbon::now()->daysInMonth; //Количесто дней в текущем месяце
+        $firstDayMonth = Carbon::now()->firstOfMonth(); //Первый день месяца
+        $lastDayMonth = Carbon::now()->lastOfMonth()->format('Y-m-d'); //Последний день месяца
+
+        /*
+         * Прелпраздничные и праздничные дни
+         * */
+        $holidays = DB::table('holidays')->whereBetween('date_from', [$firstDayMonth->format('Y-m-d'), $lastDayMonth])->get();
+
+        /*
+         * Невыходы на работу
+         * */
+        $absences = DB::table('employeeabsences')
+                        ->where('from', '>', $firstDayMonth->format('Y-m-d'))
+                        ->where('before', '<', $lastDayMonth)
+                        ->where('user_id', $user_id)
+                        ->get();
+        /*
+         * Заполняем данными для графиков
+         * */
+        for($ptr = 0; $ptr < $daysInMonth; $ptr++){
+            foreach($request->myemployees as $myemployee){
+            }
+        }
+
+    }
+
     public function storeOther(Request $request){
         //dd($request->all());
         request()->validate([
@@ -169,7 +222,7 @@ class TabelgraphicController extends Controller
                  * */
                 $rate = Myemployee::where('id', $myemployee)->value('rate');
                 if($rate == 1){
-                    $graphicother->rate = $request->monthly_rate_of_hours_01;
+                    $graphicother->rate = $request->monthly_rate_of_hours;
                 }
                 if($rate == 0.75){
                     $graphicother->rate = $request->monthly_rate_of_hours_075;

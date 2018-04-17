@@ -11,6 +11,9 @@
     <link href="{{asset('plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/clockpicker/bootstrap-clockpicker.min.css')}}" rel="stylesheet">
     <link href="{{asset('plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
+    <!--Form Wizard-->
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/jquery.steps/demo/css/jquery.steps.css')}}" />
 @endsection
 
 @section('content')
@@ -40,125 +43,221 @@
                         Внесите данные для автоматического формирования табеля и графика.
                     </p>
                     <div class="p-20">
-                        <form action="{{route('graphic.store.other')}}" method="POST">
+                        <form id="wizard-vertical" action="{{route('graphic.store.other')}}" method="POST">
                             {{csrf_field()}}
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">Название графика<span class="text-danger">*</span></label>
-                                <div class="col-sm-7">
-                                    <input type="text" name="name" placeholder="Например: врачи апрель 2018" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">Месяц<span class="text-danger">*</span></label>
-                                <div class="col-sm-7">
-                                    <select name="month" class="form-controll select2" style="width: 100%">
-                                        <option value="1" @if($month == 1) selected @endif>Январь</option>
-                                        <option value="2" @if($month == 2) selected @endif>Февраль</option>
-                                        <option value="3" @if($month == 3) selected @endif>Март</option>
-                                        <option value="4" @if($month == 4) selected @endif>Апрель</option>
-                                        <option value="5" @if($month == 5) selected @endif>Май</option>
-                                        <option value="6" @if($month == 6) selected @endif>Июнь</option>
-                                        <option value="7" @if($month == 7) selected @endif>Июль</option>
-                                        <option value="8" @if($month == 8) selected @endif>Август</option>
-                                        <option value="9" @if($month == 9) selected @endif>Сентябрь</option>
-                                        <option value="10" @if($month == 10) selected @endif>Октябрь</option>
-                                        <option value="11" @if($month == 11) selected @endif>Ноябрь</option>
-                                        <option value="12" @if($month == 12) selected @endif>Декабрь</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">Часов в день<span class="text-danger">*</span></label>
-                                <div class="col-sm-7">
-                                    <div class="input-group ">
-                                        <input type="text" name="hours_per_day" data-mask="99:99"  class="form-control">
-                                        <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
+                            <h3>Основные данные</h3>
+                            <section>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 control-label " for="">Название графика <span class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <input type="text" name="name" placeholder="Например: врачи апрель 2018" class="form-control">
                                     </div>
-                                    <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">Кол-во рабочих дней<span class="text-danger">*</span></label>
-                                <div class="col-sm-7">
-                                    <input type="text" name="number_of_working_days" placeholder="Например: 21" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 form-control-label">Начало рабочего дня<span class="text-danger">*</span></label>
-                                <div class="col-sm-7">
-                                    <div class="input-group ">
-                                        <input type="text" name="from" data-mask="99:99"  class="form-control">
-                                        <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 control-label " for=""> Месяц <span class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <select name="month" class="form-controll select2" style="width: 100%">
+                                            <option value="1" @if($month == 1) selected @endif>Январь</option>
+                                            <option value="2" @if($month == 2) selected @endif>Февраль</option>
+                                            <option value="3" @if($month == 3) selected @endif>Март</option>
+                                            <option value="4" @if($month == 4) selected @endif>Апрель</option>
+                                            <option value="5" @if($month == 5) selected @endif>Май</option>
+                                            <option value="6" @if($month == 6) selected @endif>Июнь</option>
+                                            <option value="7" @if($month == 7) selected @endif>Июль</option>
+                                            <option value="8" @if($month == 8) selected @endif>Август</option>
+                                            <option value="9" @if($month == 9) selected @endif>Сентябрь</option>
+                                            <option value="10" @if($month == 10) selected @endif>Октябрь</option>
+                                            <option value="11" @if($month == 11) selected @endif>Ноябрь</option>
+                                            <option value="12" @if($month == 12) selected @endif>Декабрь</option>
+                                        </select>
                                     </div>
-                                    <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="hori-pass1" class="col-sm-4 form-control-label">Конец рабочего дня<span class="text-danger">*</span></label>
-                                <div class="col-sm-7">
-                                    <div class="input-group ">
-                                        <input type="text" name="before" data-mask="99:99"  class="form-control">
-                                        <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
+
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 form-control-label">Сотрудники
+                                        <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <select name="myemployees[]" class="multi-select" multiple="" id="my_multi_select3" >
+                                            @foreach($myemployees as $myemployee)
+                                                <option value="{{$myemployee->id}}">{{$myemployee->employee->employee}} - {{$myemployee->position->position}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 form-control-label">Месячная норма часов на ставку</label>
-                                <div class="col-sm-7">
-                                    <input name="monthly_rate_of_hours_01" type="text" placeholder=""
-                                           class="form-control">
+                            </section>
+                            <h3>Норма часов</h3>
+                            <section>
+                                <div class="form-group row">
+                                    <label for="" class="col-lg-4 form-control-label">Месячная норма часов на ставку<span class="text-danger">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input name="monthly_rate_of_hours" type="text" placeholder=""
+                                               class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 form-control-label">Месячная норма часов на 0.75 ставки</label>
-                                <div class="col-sm-7">
-                                    <input name="monthly_rate_of_hours_075" type="text" placeholder=""
-                                           class="form-control">
+                            </section>
+                            <h3>График</h3>
+                            <section>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 form-control-label">Начало рабочего дня<span class="text-danger">*</span></label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group ">
+                                            <input type="text" name="from" data-mask="99:99"  class="form-control">
+                                            <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
+                                        </div>
+                                        <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 form-control-label">Месячная норма часов на 0.5 ставки</label>
-                                <div class="col-sm-7">
-                                    <input name="monthly_rate_of_hours_05" type="text" placeholder=""
-                                           class="form-control">
+                                <div class="form-group row">
+                                    <label for="hori-pass1" class="col-sm-4 form-control-label">Конец рабочего дня на ставку<span class="text-danger">*</span></label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group ">
+                                            <input type="text" name="before" data-mask="99:99"  class="form-control">
+                                            <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
+                                        </div>
+                                        <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 form-control-label">Месячная норма часов на 0.25 ставки</label>
-                                <div class="col-sm-7">
-                                    <input name="monthly_rate_of_hours_025" type="text" placeholder=""
-                                           class="form-control">
+                            </section>
+                            <h3>Табель</h3>
+                            <section>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 form-control-label">Часов в день на ставку<span class="text-danger">*</span></label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group ">
+                                            <input type="text" name="hours_per_day" data-mask="99:99"  class="form-control">
+                                            <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
+                                        </div>
+                                        <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 form-control-label">Сотрудники
-                                    <span class="text-danger">*</span></label>
-                                <div class="col-sm-8">
-                                    <select name="myemployees[]" class="multi-select" multiple="" id="my_multi_select3" >
-                                        @foreach($myemployees as $myemployee)
-                                            <option value="{{$myemployee->id}}">{{$myemployee->employee->employee}} - {{$myemployee->position->position}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 form-control-label">Кол-во рабочих дней<span class="text-danger">*</span></label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="number_of_working_days" placeholder="Например: 21" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-outline-primary waves-effect waves-light">
-                                        Сохранить
-                                    </button>
-                                    <a href="{{route('graphic')}}" class="btn btn-outline-primary waves-effect m-l-5">
-                                        Сохранить и заполнить
-                                    </a>
-
-                                    <a href="{{route('graphic')}}" class="btn btn-outline-secondary waves-effect m-l-5">
-                                        Назад
-                                    </a>
-                                </div>
-                            </div>
-
+                            </section>
                         </form>
+                        <!-- End #wizard-vertical -->
+                        {{--<form action="{{route('graphic.store.other')}}" method="POST">--}}
+                            {{--{{csrf_field()}}--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-sm-4 form-control-label">Название графика<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input type="text" name="name" placeholder="Например: врачи апрель 2018" class="form-control">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-sm-4 form-control-label">Месяц<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<select name="month" class="form-controll select2" style="width: 100%">--}}
+                                        {{--<option value="1" @if($month == 1) selected @endif>Январь</option>--}}
+                                        {{--<option value="2" @if($month == 2) selected @endif>Февраль</option>--}}
+                                        {{--<option value="3" @if($month == 3) selected @endif>Март</option>--}}
+                                        {{--<option value="4" @if($month == 4) selected @endif>Апрель</option>--}}
+                                        {{--<option value="5" @if($month == 5) selected @endif>Май</option>--}}
+                                        {{--<option value="6" @if($month == 6) selected @endif>Июнь</option>--}}
+                                        {{--<option value="7" @if($month == 7) selected @endif>Июль</option>--}}
+                                        {{--<option value="8" @if($month == 8) selected @endif>Август</option>--}}
+                                        {{--<option value="9" @if($month == 9) selected @endif>Сентябрь</option>--}}
+                                        {{--<option value="10" @if($month == 10) selected @endif>Октябрь</option>--}}
+                                        {{--<option value="11" @if($month == 11) selected @endif>Ноябрь</option>--}}
+                                        {{--<option value="12" @if($month == 12) selected @endif>Декабрь</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-sm-4 form-control-label">Часов в день<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<div class="input-group ">--}}
+                                        {{--<input type="text" name="hours_per_day" data-mask="99:99"  class="form-control">--}}
+                                        {{--<span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>--}}
+                                    {{--</div>--}}
+                                    {{--<span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-sm-4 form-control-label">Кол-во рабочих дней<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input type="text" name="number_of_working_days" placeholder="Например: 21" class="form-control">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-sm-4 form-control-label">Начало рабочего дня<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<div class="input-group ">--}}
+                                        {{--<input type="text" name="from" data-mask="99:99"  class="form-control">--}}
+                                        {{--<span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>--}}
+                                    {{--</div>--}}
+                                    {{--<span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="hori-pass1" class="col-sm-4 form-control-label">Конец рабочего дня<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<div class="input-group ">--}}
+                                        {{--<input type="text" name="before" data-mask="99:99"  class="form-control">--}}
+                                        {{--<span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>--}}
+                                    {{--</div>--}}
+                                    {{--<span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="" class="col-sm-4 form-control-label">Месячная норма часов на ставку</label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input name="monthly_rate_of_hours_01" type="text" placeholder=""--}}
+                                           {{--class="form-control">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="" class="col-sm-4 form-control-label">Месячная норма часов на 0.75 ставки</label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input name="monthly_rate_of_hours_075" type="text" placeholder=""--}}
+                                           {{--class="form-control">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="" class="col-sm-4 form-control-label">Месячная норма часов на 0.5 ставки</label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input name="monthly_rate_of_hours_05" type="text" placeholder=""--}}
+                                           {{--class="form-control">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="" class="col-sm-4 form-control-label">Месячная норма часов на 0.25 ставки</label>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input name="monthly_rate_of_hours_025" type="text" placeholder=""--}}
+                                           {{--class="form-control">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="" class="col-sm-4 form-control-label">Сотрудники--}}
+                                    {{--<span class="text-danger">*</span></label>--}}
+                                {{--<div class="col-sm-8">--}}
+                                    {{--<select name="myemployees[]" class="multi-select" multiple="" id="my_multi_select3" >--}}
+                                        {{--@foreach($myemployees as $myemployee)--}}
+                                            {{--<option value="{{$myemployee->id}}">{{$myemployee->employee->employee}} - {{$myemployee->position->position}}</option>--}}
+                                        {{--@endforeach--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                            {{--<div class="form-group row">--}}
+                                {{--<div class="col-12">--}}
+                                    {{--<button type="submit" class="btn btn-outline-primary waves-effect waves-light">--}}
+                                        {{--Сохранить--}}
+                                    {{--</button>--}}
+                                    {{--<a href="{{route('graphic')}}" class="btn btn-outline-primary waves-effect m-l-5">--}}
+                                        {{--Сохранить и заполнить--}}
+                                    {{--</a>--}}
+
+                                    {{--<a href="{{route('graphic')}}" class="btn btn-outline-secondary waves-effect m-l-5">--}}
+                                        {{--Назад--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                        {{--</form>--}}
                     </div>
                 </div>
             </div>
@@ -169,6 +268,10 @@
 @endsection
 
 @section('js-page')
+    <!--Form Wizard-->
+    <script src="{{asset('plugins/jquery.steps/build/jquery.steps.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{asset('plugins/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+
     <script src="{{asset('plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/multiselect/js/jquery.multi-select.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/jquery-quicksearch/jquery.quicksearch.js')}}"></script>
@@ -190,5 +293,7 @@
     <script type="text/javascript" src="{{asset('js/jquery.formadvanced.init.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.form-pickers.init.js')}}"></script>
 
+    <!--wizard initialization-->
+    <script src="{{asset('js/jquery.wizard-init.js')}}" type="text/javascript"></script>
     <script src="{{asset('plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}" type="text/javascript"></script>
 @endsection
