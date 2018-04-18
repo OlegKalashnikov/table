@@ -48,7 +48,9 @@
                         </div>
                     </div>
                     <p class="text-muted font-13 m-b-30">
-
+                        @if(Session::has('success'))
+                            <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {{ session('success') }}</em></div>
+                        @endif
                     </p>
 
                         {{--<a href="{{route('my.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Заполнение табеля</a>--}}

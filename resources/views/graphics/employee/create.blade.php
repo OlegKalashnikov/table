@@ -41,6 +41,17 @@
                     <p class="text-muted font-13 m-b-10">
                         Внесите данные для автоматического формирования табеля и графика.
                     </p>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
                     <form id="wizard-vertical" action="{{route('graphic.add.employee')}}" method="POST">
                         {{csrf_field()}}
                         <h3>Основные данные</h3>

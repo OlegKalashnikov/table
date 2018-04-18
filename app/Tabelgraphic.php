@@ -16,4 +16,5 @@ class Tabelgraphic extends Model
         return $this->hasOne('App\User','id','user_id');
     }
 
+
 }

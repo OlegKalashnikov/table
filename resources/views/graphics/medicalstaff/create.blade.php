@@ -39,9 +39,14 @@
                             <h3>Основные данные</h3>
                             <section>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 control-label " for="">Название графика <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 control-label " for="">Подразделение <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <input type="text" name="name" placeholder="Например: врачи апрель 2018" class="form-control">
+                                        <select name="department_id" class="form-controll select2" style="width: 100%">
+                                            <option value="" >Выберите подразделение</option>
+                                            @foreach($departments as $department)
+                                                <option value="{{$department->id}}">{{$department->department}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -134,7 +139,7 @@
                                     <label class="col-sm-4 form-control-label">Дата<span class="text-danger">*</span></label>
                                     <div class="col-sm-7">
                                         <div class="input-group ">
-                                            <input type="text" name="date_weekend" data-mask="99:99"  class="form-control">
+                                            <input type="text" name="date_weekend" class="form-control">
                                             <span class="input-group-addon"> <span class="zmdi zmdi-time"></span> </span>
                                         </div>
                                         <span class="font-13 text-muted m-b-20">ЧЧ:ММ</span>

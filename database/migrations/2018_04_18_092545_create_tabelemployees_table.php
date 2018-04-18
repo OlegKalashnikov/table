@@ -26,7 +26,7 @@ class CreateTabelemployeesTable extends Migration
             $table->integer('number_of_working_days')->unsigned();
             $table->string('begining_of_the_work_day');
             $table->string('end_of_the_work_day');
-            $table->string('monthly_rate_of_hours');
+            $table->string('monthly_rate_of_hours')->nullable();
             $table->date('date');
             $table->timestamps();
         });
