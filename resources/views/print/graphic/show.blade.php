@@ -56,14 +56,12 @@
                                             </div><!-- d-flex -->
                                         </div>
                                     @endif
-                                    <button class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#modalcreate"><i class="fa fa-plus"></i> добавить запись</button>
                                 </div>
                                 <table table id="datatable" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
                                         <th>Подразделение</th>
                                         <th>Месяц</th>
-                                        <th>Статус</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -71,7 +69,6 @@
                                             <tr>
                                                 <td><a href="{{route('print.graphics.show', [ $graphic->department_id, $graphic->month])}}">{{\App\Tabelemployee::department($graphic->department_id)}}</a></td>
                                                 <td>{{\App\Tabelemployee::month($graphic->month)}}</td>
-                                                <td>Cnfnec</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
