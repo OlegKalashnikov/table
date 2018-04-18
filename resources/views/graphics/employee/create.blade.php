@@ -46,9 +46,14 @@
                         <h3>Основные данные</h3>
                         <section>
                             <div class="form-group row">
-                                <label class="col-lg-3 control-label " for="">Название графика <span class="text-danger">*</span></label>
+                                <label class="col-lg-3 control-label " for="">Подразделение <span class="text-danger">*</span></label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="name" placeholder="Например: врачи апрель 2018" class="form-control">
+                                    <select name="department_id" class="form-controll select2" style="width: 100%">
+                                        <option value="" >Выберите подразделение</option>
+                                        @foreach($departments as $department)
+                                            <option value="{{$department->id}}">{{$department->department}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -81,6 +86,7 @@
                                     <span class="text-danger">*</span></label>
                                 <div class="col-sm-9">
                                     <select name="myemployees" class="select2 form-control">
+                                        <option value="">Выберите сотрудника</option>
                                         @foreach($myemployees as $myemployee)
                                             <option value="{{$myemployee->id}}">{{$myemployee->employee->employee}} - {{$myemployee->position->position}}</option>
                                         @endforeach
@@ -91,7 +97,7 @@
                         <h3>Норма часов</h3>
                         <section>
                             <div class="form-group row">
-                                <label for="" class="col-lg-4 form-control-label">Месячная норма часов на ставку<span class="text-danger">*</span></label>
+                                <label for="" class="col-lg-4 form-control-label">Месячная норма часов<span class="text-danger">*</span></label>
                                 <div class="col-lg-8">
                                     <input name="monthly_rate_of_hours" type="text" placeholder=""
                                            class="form-control">
@@ -103,12 +109,11 @@
                             <div class="form-group row">
                                 <label class="col-lg-4 form-control-label">Дата<span class="text-danger">*</span></label>
                                 <div class="col-sm-7">
-                                    <div class="input-group ">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="date[]" placeholder="mm/dd/yyyy" id="datepicker-multiple-date">
+                                            <input type="text" class="form-control" name="date[]" id="datepicker-multiple-date">
                                             <span class="input-group-addon bg-custom b-0"><i class="icon-calender"></i></span>
                                         </div><!-- input-group -->
-                                    </div>
+                                        <span class="font-13 text-muted m-b-20">ГГГГ-ММ-ДД</span>
                                 </div>
 
                                 <label class="col-lg-4 form-control-label">Часов в день на ставку<span class="text-danger">*</span></label>
@@ -141,7 +146,7 @@
                             <div id="parentId">
                             </div>
                             <div class="form-group row">
-                                <a htef="" class="btn btn-outline-primary" onclick="return addField()"><i class="fa fa-plus"></i>Добавить поле</a>
+                                <a htef="" class="btn btn-outline-primary" onclick="return addField()"><i class="fa fa-plus"></i> Добавить поле</a>
                             </div>
                         </section>
                     </form>
@@ -210,13 +215,13 @@
             div.innerHTML = "<div class=\"form-group row\">" +
                 "<label class='col-lg-4 form-control-label'>Дата<span class='text-danger'>*</span></label>" +
                 "<div class=\"col-sm-7\">\n" +
-                "                                    <div class=\"input-group \">\n" +
-                "                                        <div class=\"input-group\">\n" +
-                "                                            <input type=\"text\" class=\"form-control kov\" name=\"date[]\" placeholder=\"mm/dd/yyyy\" >\n" +
-                "                                            <span class=\"input-group-addon bg-custom b-0\"><i class=\"icon-calender\"></i></span>\n" +
-                "                                        </div><!-- input-group -->\n" +
-                "                                    </div>\n" +
-                "                                </div>" +
+            "                                        <div class=\"input-group\">\n" +
+            "                                            <input type=\"text\" class=\"form-control datepicker_recurring_start\" name=\"date[]\" >\n" +
+            "                                            <span class=\"input-group-addon bg-custom b-0\"><i class=\"icon-calender\"></i></span>\n" +
+            "                                        </div><!-- input-group -->\n" +
+                    "<span class=\"font-13 text-muted m-b-20\">ГГГГ-ММ-ДД</span>\n" +
+
+            "                                    </div>\n" +
                 "<label class=\"col-lg-4 form-control-label\">Часов в день на ставку<span class=\"text-danger\">*</span></label>\n" +
                 "                                <div class=\"col-sm-7\">\n" +
                 "                                    <div class=\"input-group \">\n" +
@@ -247,5 +252,20 @@
             // Возвращаем false, чтобы не было перехода по сслыке
             return false;
         }
+    </script>
+
+    <script>
+        $('body').on('focus',"input.datepicker_recurring_start", function(){ // привязываем датапикер для динамически добавляемых элементов
+            //console.log('bind', researchIndex);
+            $(this).removeClass('datepicker_recurring_start'); // класс идентификатор можно удалить
+            $(this).datepicker({
+                firstDay: 1,
+                format: "yyyy-mm-dd",
+                clearBtn: true,
+                multidate: true,
+                multidateSeparator: ","
+            });
+        });
+
     </script>
 @endsection

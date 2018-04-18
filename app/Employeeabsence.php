@@ -34,4 +34,8 @@ class Employeeabsence extends Model
     public function user(){
         return $this->hasOne('App\User', 'id', 'user_id');
     }
+
+    public static function reduction($id){
+        return Absence::where('id', $id)->value('reduction');
+    }
 }

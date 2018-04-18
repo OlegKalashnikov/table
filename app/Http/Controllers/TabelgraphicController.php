@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\Graphicother;
 use App\Holiday;
 use App\Myemployee;
+use App\Tabelemployee;
 use App\Tabelgraphic;
 use App\Type;
 use App\User;
+use App\Employeeabsence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -59,14 +62,54 @@ class TabelgraphicController extends Controller
         $user_id = Auth::user()->id;
         $month = Carbon::now()->format('m');
         $myemployees = Myemployee::where('user_id', $user_id)->get();
+        $departments = Department::all();
         return view('graphics.employee.create', [
             'myemployees' => $myemployees,
             'month' => $month,
+            'departments' => $departments,
         ]);
     }
 
     public function storeEmployee(Request $request){
-        dump($request->all());
+        request()->validate([
+            ''
+        ]);
+        foreach($request->date as $value){
+            $date[] = explode(',', $value);
+        }
+        /*
+         * id Пользователя, который добавляет запись
+         * */
+        $user_id = Auth::user()->id;
+        $daysInMonth = Carbon::now()->daysInMonth; //Количесто дней в текущем месяце
+        $firstDayMonth = Carbon::now()->firstOfMonth(); //Первый день месяца
+        $lastDayMonth = Carbon::now()->lastOfMonth()->format('Y-m-d'); //Последний день месяца
+        /*
+         * Заполняем данными для графиков
+         * */
+        for($ptr = 0; $ptr < $daysInMonth; $ptr++){ //Проходим по всему месяцу
+            $data = new Tabelemployee(); //Создаем новый объект
+            foreach($date as $key => $value){
+                foreach($value as $item){//проходим по массиву дат полученыых от пользователя
+                    if($firstDayMonth->format('Y-m-d') == $item){//сравниваем день месяца с полученным от пользователя днем
+                        $data->user_id = $user_id;
+                        $data->myemployee_id = $request->myemployees;
+                        $data->department_id = $request->department_id;
+                        $data->month = $request->month;
+                        $data->number_of_working_days = $request->number_of_working_days;
+                        $data->monthly_rate_of_hours = $request->monthly_rate_of_hours;
+                        $data->hours_per_day = $request->hours_per_day[$key];
+                        $data->begining_of_the_work_day = $request->from[$key];
+                        $data->end_of_the_work_day = $request->before[$key];
+                        $data->date = $firstDayMonth->format('Y-m-d');
+                        $data->save();
+                    }
+                }
+            }
+            $firstDayMonth->addDay();
+        }
+
+        return redirect()->route('my.employee')->with('success', 'Данные успешно добавлены');
     }
 
     public function storeMedicalstaff(Request $request){

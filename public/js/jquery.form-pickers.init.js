@@ -83,15 +83,8 @@ $(document).ready(function () {
         todayHighlight: true
     });
     jQuery('#datepicker-inline').datepicker();
-    jQuery('#datepicker-multiple-date').datepicker({
-        format: "mm/dd/yyyy",
-        clearBtn: true,
-        multidate: true,
-        multidateSeparator: ","
-    });
 
-    jQuery('.kov').datepicker({
-        firstDay: 1,
+    jQuery('#datepicker-multiple-date').datepicker({
         format: "yyyy-mm-dd",
         clearBtn: true,
         multidate: true,
