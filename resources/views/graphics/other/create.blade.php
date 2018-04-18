@@ -42,15 +42,29 @@
                     <p class="text-muted font-13 m-b-10">
                         Внесите данные для автоматического формирования табеля и графика.
                     </p>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="p-20">
                         <form id="wizard-vertical" action="{{route('graphic.store.other')}}" method="POST">
                             {{csrf_field()}}
                             <h3>Основные данные</h3>
                             <section>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 control-label " for="">Название графика <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 control-label " for="">Подразделение <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <input type="text" name="name" placeholder="Например: врачи апрель 2018" class="form-control">
+                                        <select name="department_id" class="form-controll select2" style="width: 100%">
+                                            <option value="" >Выберите подразделение</option>
+                                            @foreach($departments as $department)
+                                                <option value="{{$department->id}}">{{$department->department}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">

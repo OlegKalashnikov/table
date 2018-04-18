@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-6">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Формирование графика и табеля <span class="caret"></span></button>
+                                <button type="button" class="btn btn-outline-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Формирование данных для графика и табеля <span class="caret"></span></button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{route('graphic.create.medicalstaff')}}">Для медперсонала</a>
                                     <a class="dropdown-item" href="{{route('graphic.create.other')}}">Для прочих</a>
