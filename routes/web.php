@@ -177,6 +177,7 @@ Route::group(['middleware' => 'auth'], function(){
      * */
 
     Route::get('print/graphics', 'PrintGraphicController@index')->name('print.graphics');
+    Route::get('print/graphics/{department_id}/{month}/show', 'PrintGraphicController@showGraphic')->name('print.graphics.show');
 });
 
 Auth::routes();

@@ -42,4 +42,25 @@ class Tabelemployee extends Model
             return date("H:i", mktime(0,0,$temp[0]+$temp[1] - $preholiday));
         }
     }
+
+    public static function department($department_id){
+        return Department::where('id', $department_id)->value('department');
+    }
+
+    public static function month($id){
+        switch($id){
+            case '1': return 'Январь';
+            case '2': return 'Февраль';
+            case '3': return 'Март';
+            case '4': return 'Апрель';
+            case '5': return 'Май';
+            case '6': return 'Июнь';
+            case '7': return 'Июль';
+            case '8': return 'Август';
+            case '9': return 'Сентябрь';
+            case '10': return 'Октябрь';
+            case '11': return 'Ноябрь';
+            case '12': return 'Декабрь';
+        }
+    }
 }
