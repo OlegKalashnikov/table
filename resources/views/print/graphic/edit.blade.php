@@ -52,13 +52,17 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($graphics as  $graphic)
-                                                <tr>
-                                                    <td>1</td>
-                                                    @foreach($graphic as $key => $td)
-                                                    <td>{{$td}} - {{$td}}</td>
+                                            @foreach($graphics as $key => $graphic)
+                                            <tr>
+                                                <td>{{$number++}}</td>
+                                                <td>{{$key}}</td>
+                                                <td>{{$key}}</td>
+                                                @foreach($graphic as $item)
+                                                    @foreach($item as $count => $td)
+                                                        <td>{{$td[$count]}}</td>
                                                     @endforeach
-                                                </tr>
+                                                @endforeach
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
