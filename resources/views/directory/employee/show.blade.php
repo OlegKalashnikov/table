@@ -37,24 +37,28 @@
                         Список всех сотрудников организации
                     </p>
                     <div class="m-b-30">
+                        @can('action', Auth::user())
                         <a href="{{route('directory.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Создание сотрудника</a>
                         <a href="{{route('directory.employee.upload')}}" class="btn btn-outline-primary"><i class="fa fa-upload"></i> Импорт данных</a>
+                        @endcan
                     </div>
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>ФИО сотрудника</th>
-                                <th>Действия</th>
+                                @can('action', Auth::user())<th>Действия</th>@endcan
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($employees as $employee)
                             <tr>
                                 <td>{{$employee->employee}}</td>
+                                @can('action', Auth::user())
                                 <td>
                                     <a href="{{route('directory.employee.edit', ['id' => $employee->id])}}" class="btn btn-outline-primary"> <i class="fa fa-edit"></i> </a>
                                     <button class="btn btn-outline-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-sm" data-modalid="{{$employee->id}}"><i class="fa fa-trash"></i></button>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                         </tbody>

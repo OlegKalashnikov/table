@@ -9,13 +9,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class PositionController extends Controller
 {
     public function index(){
-        return view('settings.positions.show', [
+        return view('directory.positions.show', [
             'positions' => Position::all(),
         ]);
     }
 
     public function uploadForm(){
-        return view('settings.positions.uploadForm');
+        return view('directory.positions.uploadForm');
     }
 
     public function upload(Request $request){
@@ -36,7 +36,7 @@ class PositionController extends Controller
             }
         }
 
-        return redirect()->route('settings.position')->with([
+        return redirect()->route('directory.position')->with([
             'success'   => 'Данные успешно загружены',
             'log'       => $ptr
         ]);
@@ -44,7 +44,7 @@ class PositionController extends Controller
     }
 
     public function create(){
-        return view('settings.positions.create');
+        return view('directory.positions.create');
     }
 
     public function store(Request $request){
@@ -55,11 +55,11 @@ class PositionController extends Controller
 
         Position::create($request->all());
 
-        return redirect()->route('settings.position')->with('success', 'Должность успешно создана');
+        return redirect()->route('directory.position')->with('success', 'Должность успешно создана');
     }
 
     public function edit($id){
-        return view('settings.positions.edit', [
+        return view('directory.positions.edit', [
             'positions' => Position::find($id)
         ]);
     }
@@ -73,7 +73,7 @@ class PositionController extends Controller
         $position = Position::find($id);
         $position->update($request->all());
 
-        return redirect()->route('settings.position')->with('success', 'Должность успешно обновлена');
+        return redirect()->route('directory.position')->with('success', 'Должность успешно обновлена');
     }
 
     public function destroy(Request $request){

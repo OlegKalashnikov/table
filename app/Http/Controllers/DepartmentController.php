@@ -9,13 +9,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class DepartmentController extends Controller
 {
     public function index(){
-        return view('settings.department.show', [
+        return view('directory.department.show', [
             'departments' => Department::all(),
         ]);
     }
 
     public function uploadForm(){
-        return view('settings.department.uploadForm');
+        return view('directory.department.uploadForm');
     }
 
     public function upload(Request $request){
@@ -35,7 +35,7 @@ class DepartmentController extends Controller
             }
         }
 
-        return redirect()->route('settings.department')->with([
+        return redirect()->route('directory.department')->with([
             'success'   => 'Данные успешно загружены',
             'log'       => $ptr
         ]);
@@ -43,7 +43,7 @@ class DepartmentController extends Controller
     }
 
     public function create(){
-        return view('settings.department.create');
+        return view('directory.department.create');
     }
 
     public function store(Request $request){
@@ -53,11 +53,11 @@ class DepartmentController extends Controller
 
         Department::create($request->all());
 
-        return redirect()->route('settings.department')->with('success', 'Подразделение успешно создано');
+        return redirect()->route('directory.department')->with('success', 'Подразделение успешно создано');
     }
 
     public function edit($id){
-        return view('settings.department.edit', [
+        return view('directory.department.edit', [
             'departments' => Department::find($id)
         ]);
     }
@@ -70,7 +70,7 @@ class DepartmentController extends Controller
         $department = Department::find($id);
         $department->update($request->all());
 
-        return redirect()->route('settings.department')->with('success', 'Подразделение успешно обновлено');
+        return redirect()->route('directory.department')->with('success', 'Подразделение успешно обновлено');
     }
 
     public function destroy(Request $request){

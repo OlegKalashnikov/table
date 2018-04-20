@@ -7,7 +7,7 @@
 
                 <li class="has_sub">
                     <a href="{{url('/')}}" class="waves-effect">
-                        <i class="zmdi zmdi-view-dashboard"></i><span> Панель управления </span>
+                        <i class="zmdi zmdi-view-dashboard"></i><span> Главная </span>
                     </a>
                 </li>
 
@@ -60,13 +60,13 @@
                     </a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('directory.employee')}}">Сотрудники</a></li>
-                        <li><a href="{{route('settings.department')}}">Подразделения</a></li>
-                        <li><a href="{{route('settings.position')}}">Должности</a></li>
+                        <li><a href="{{route('directory.department')}}">Подразделения</a></li>
+                        <li><a href="{{route('directory.position')}}">Должности</a></li>
                     </ul>
                 </li>
 
 
-
+                @can('settings', Auth::user())
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="zmdi zmdi-settings"></i><span> Настройки </span> <span class="menu-arrow"></span>
@@ -88,7 +88,7 @@
                         @endif
                     </ul>
                 </li>
-
+                @endcan
             </ul>
             <div class="clearfix"></div>
         </div>

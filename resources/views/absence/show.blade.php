@@ -63,7 +63,7 @@
                             <th rowspan="2">Должность</th>
                             <th rowspan="2">Подразделение</th>
                             <th colspan="2" style="text-align: center">Период</th>
-                            <th rowspan="2" width="120px">Действия</th>
+                            @can('action', Auth::user())<th rowspan="2" width="120px">Действия</th>@endcan
                         </tr>
                         <tr>
                             <th>С</th>
@@ -78,7 +78,9 @@
                                     <td>{{$value->myemployee->department->department}}</td>
                                     <td>{{$value->from}}</td>
                                     <td>{{$value->before}}</td>
+                                    @can('action', Auth::user())
                                     <td></td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>

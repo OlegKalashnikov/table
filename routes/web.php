@@ -11,9 +11,10 @@
 |
 */
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    /*
+     * Главная страница
+     * */
+    Route::get('/', 'IndexController@index')->name('index');
 
     /*
      * Блокировка экрана
@@ -55,26 +56,26 @@ Route::group(['middleware' => 'auth'], function(){
     /*
      * Должности
      * */
-    Route::get('settings/positions', 'PositionController@index')->name('settings.position');
-    Route::get('settings/positions/create', 'PositionController@create')->name('settings.position.create');
-    Route::post('settings/positions/add', 'PositionController@store')->name('settings.position.store');
-    Route::get('settings/positions/upload', 'PositionController@uploadForm')->name('settings.position.upload');
-    Route::post('settings/positions/upload', 'PositionController@upload');
-    Route::get('settings/positions/{id}/edit', 'PositionController@edit')->name('settings.position.edit');
-    Route::patch('settings/positions/{id}/update', 'PositionController@update')->name('settings.position.update');
-    Route::delete('settings/positions/{id}/delete', 'PositionController@destroy')->name('settings.position.destroy');
+    Route::get('directory/positions', 'PositionController@index')->name('directory.position');
+    Route::get('directory/positions/create', 'PositionController@create')->name('directory.position.create');
+    Route::post('directory/positions/add', 'PositionController@store')->name('directory.position.store');
+    Route::get('directory/positions/upload', 'PositionController@uploadForm')->name('directory.position.upload');
+    Route::post('directory/positions/upload', 'PositionController@upload');
+    Route::get('directory/positions/{id}/edit', 'PositionController@edit')->name('directory.position.edit');
+    Route::patch('directory/positions/{id}/update', 'PositionController@update')->name('directory.position.update');
+    Route::delete('directory/positions/{id}/delete', 'PositionController@destroy')->name('directory.position.destroy');
 
     /*
      * Подразделения
      * */
-    Route::get('settings/departments', 'DepartmentController@index')->name('settings.department');
-    Route::get('settings/departments/create', 'DepartmentController@create')->name('settings.department.create');
-    Route::post('settings/departments/add', 'DepartmentController@store')->name('settings.department.store');
-    Route::get('settings/departments/upload', 'DepartmentController@uploadForm')->name('settings.department.upload');
-    Route::post('settings/departments/upload', 'DepartmentController@upload');
-    Route::get('settings/departments/{id}/edit', 'DepartmentController@edit')->name('settings.department.edit');
-    Route::patch('settings/departments/{id}/update', 'DepartmentController@update')->name('settings.department.update');
-    Route::delete('settings/departments/{id}/delete', 'DepartmentController@destroy')->name('settings.department.destroy');
+    Route::get('directory/departments', 'DepartmentController@index')->name('directory.department');
+    Route::get('directory/departments/create', 'DepartmentController@create')->name('directory.department.create');
+    Route::post('directory/departments/add', 'DepartmentController@store')->name('directory.department.store');
+    Route::get('directory/departments/upload', 'DepartmentController@uploadForm')->name('directory.department.upload');
+    Route::post('directory/departments/upload', 'DepartmentController@upload');
+    Route::get('directory/departments/{id}/edit', 'DepartmentController@edit')->name('directory.department.edit');
+    Route::patch('directory/departments/{id}/update', 'DepartmentController@update')->name('directory.department.update');
+    Route::delete('directory/departments/{id}/delete', 'DepartmentController@destroy')->name('directory.department.destroy');
 
     /*
      * Сотрудники

@@ -10,6 +10,7 @@ class RoleController extends Controller
     public function index(){
         return view('settings.roles.show', [
             'roles' => Role::all(),
+            'ptr' => 1,
         ]);
     }
 

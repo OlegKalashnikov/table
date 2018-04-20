@@ -11,7 +11,7 @@
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{url('/')}}">Главная</a>
         <a class="breadcrumb-item" href="{{route('breadcrumb.settings')}}">Настройки</a>
-        <a class="breadcrumb-item" href="{{route('settings.position')}}">Должности</a>
+        <a class="breadcrumb-item" href="{{route('directory.position')}}">Должности</a>
         <span class="breadcrumb-item active">Импорт данных</span>
     </nav>
 
@@ -35,7 +35,7 @@
                         </div>
                     @endif
 
-                    <form action="{{route('settings.position.upload')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('directory.position.upload')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row row-xs">
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
@@ -46,7 +46,7 @@
                             <div class="col-sm-8 mg-l-auto">
                                 <div class="form-layout-footer">
                                     <button type="submit" class="btn btn-info mg-r-5">Загрузить</button>
-                                    <a href="{{route('settings.position')}}" class="btn btn-secondary">Назад</a>
+                                    <a href="{{route('directory.position')}}" class="btn btn-secondary">Назад</a>
                                 </div><!-- form-layout-footer -->
                             </div><!-- col-8 -->
                         </div>

@@ -18,10 +18,11 @@
         <div class="sl-page-title">
             <h5>Подразделения</h5>
             <div>
-                <a href="{{route('settings.department.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Создание подразделения</a>
+                @can('action', Auth::user())
+                <a href="{{route('directory.department.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Создание подразделения</a>
 
-                <a href="{{route('settings.department.upload')}}" class="btn btn-outline-primary"><i class="fa fa-upload"></i> Импорт данных</a>
-
+                <a href="{{route('directory.department.upload')}}" class="btn btn-outline-primary"><i class="fa fa-upload"></i> Импорт данных</a>
+                @endcan
             </div>
         </div><!-- sl-page-title -->
 
@@ -56,17 +57,19 @@
                     <thead>
                     <tr>
                         <th class="wd-15p">Подразделение</th>
-                        <th class="wd-20p">Действия</th>
+                        @can('action', Auth::user())<th class="wd-20p">Действия</th>@endcan
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($departments as $department)
                         <tr>
                             <td>{{$department->department}}</td>
+                            @can('action', Auth::user())
                             <td>
-                                <a href="{{route('settings.department.edit', $department->id)}}" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>
+                                <a href="{{route('directory.department.edit', $department->id)}}" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>
                                 <a href="" data-toggle="modal" data-target="#modaldestroy" class="btn btn-outline-danger btn-icon" data-modalid="{{$department->id}}"><div><i class="fa fa-trash"></i></div></a>
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                     </tbody>
@@ -85,7 +88,7 @@
                     </div>
                     <div class="modal-body pd-20">
                         <p class="mg-b-5">Вы действительно хотите удалить запись?</p>
-                        <form action="{{route('settings.department.destroy', 'department')}}" method="POST">
+                        <form action="{{route('directory.department.destroy', 'department')}}" method="POST">
                             {{method_field('delete')}}
                             {{csrf_field()}}
                             <input type="hidden" id="id" value="" name="id">

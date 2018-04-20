@@ -19,10 +19,10 @@
             <i class="zmdi zmdi-settings"></i> <span>Настройки</span>
         </a>
 
-        <!-- item-->
-        <a href="{{route('lockscreen')}}" class="dropdown-item notify-item">
-            <i class="zmdi zmdi-lock-open"></i> <span>Заблокировать</span>
-        </a>
+        {{--<!-- item-->--}}
+        {{--<a href="{{route('lockscreen')}}" class="dropdown-item notify-item">--}}
+            {{--<i class="zmdi zmdi-lock-open"></i> <span>Заблокировать</span>--}}
+        {{--</a>--}}
 
         <!-- item-->
         <a href="{{route('logout')}}" class="dropdown-item notify-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
