@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('graphic/create/medicalstaff', 'TabelgraphicController@showFormCreateMedicalstaff')->name('graphic.create.medicalstaff');
     Route::post('graphic/add/medicalstaff', 'TabelgraphicController@storeMedicalstaff')->name('graphic.add.medicalstaff');
     Route::get('graphic/create/employee', 'TabelgraphicController@showFormCreateEmployee')->name('graphic.create.employee');
+    Route::get('graphic/create/employee/{id}', 'TabelgraphicController@showFormCreateEmployeeId')->name('graphic.create.employee.id');
     Route::post('graphic/add/employee', 'TabelgraphicController@storeEmployee')->name('graphic.add.employee');
 
 
@@ -157,6 +158,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/alignment/add', 'AlignmentController@store')->name('alignment.store');
 
 
+    /*
+     * Увольнения
+     * */
+    Route::get('dismissal', 'DismissalController@index')->name('dismissal');
+    Route::get('dismissal/create', 'DismissalController@create')->name('dismissal.create');
+    Route::post('dismissal/add', 'DismissalController@store')->name('dismissal.store');
+    Route::get('dismissal/{id}/edit', 'DismissalController@edit')->name('dismissal.edit');
+    Route::patch('dismissal/{id}/update', 'DismissalController@update')->name('dismissal.update');
 
     /*
      * Мои сотрудники

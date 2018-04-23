@@ -99,7 +99,7 @@
                                     <select name="myemployees" class="select2 form-control">
                                         <option value="">Выберите сотрудника</option>
                                         @foreach($myemployees as $myemployee)
-                                            <option value="{{$myemployee->id}}">{{$myemployee->employee->employee}} - {{$myemployee->position->position}}</option>
+                                            <option value="{{$myemployee->id}}" @if($selected) selected @endif>{{$myemployee->employee->employee}} - {{$myemployee->position->position}}</option>
                                         @endforeach
                                     </select>
                                 </div>

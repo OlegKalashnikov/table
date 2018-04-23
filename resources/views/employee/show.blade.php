@@ -52,13 +52,6 @@
                             <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {{ session('success') }}</em></div>
                         @endif
                     </p>
-
-                        {{--<a href="{{route('my.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Заполнение табеля</a>--}}
-                        {{--<a href="{{route('my.employee.create')}}" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Заполнение графика</a>--}}
-
-                    <div>
-
-                    </div>
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -66,6 +59,7 @@
                             <th>Должность</th>
                             <th>Подразделение</th>
                             <th>Ставка</th>
+                            @can('action', Auth::user())<th>Владелец</th>@endcan
                             <th width="120px">Действия</th>
                         </tr>
                         </thead>
@@ -76,11 +70,12 @@
                                 <td>{{$employee->position->position}}</td>
                                 <td>{{$employee->department->department}}</td>
                                 <td>{{$employee->rate}}</td>
+                                @can('action', Auth::user())<td>{{\App\User::nameUser($employee->user_id)}}</td>@endcan
                                 <td>
                                     <a href="{{route('my.employee.edit', $employee->id)}}" title="Редактировать" class="btn waves-effect waves-light btn-info"><i class="fa fa-edit"></i></a>
-                                    <a href="{{route('my.employee.calendar', $employee->id)}}" title="Календарь" class="btn waves-effect waves-light btn-info"><i class="fa fa-calendar-check-o"></i></a>
-                                    <a href="" title="Удалить запись" data-toggle="modal" data-target="#modaldestroy" class="btn waves-effect waves-light btn-danger" data-modalid="{{$employee->id}}"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                    <a href="{{route('graphic.create.employee.id', $employee->id)}}" title="Формировать данные для графика и табеля" class="btn waves-effect waves-light btn-info"><i class="fa fa-calendar-check-o"></i></a>
+                                    <a href="" title="Уволить" data-toggle="modal" data-target="#modaldestroy" class="btn waves-effect waves-light btn-danger" data-modalid="{{$employee->id}}"><i class="fa fa-trash"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

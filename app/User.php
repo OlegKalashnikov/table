@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -30,6 +31,20 @@ class User extends Authenticatable
 
     public static function role(){
         return User::where('id', Auth::user()->id)->value('role_id');
+    }
+
+    public static function roles($id){
+        $roles = DB::table('users')
+                    ->join('roles', 'roles.id', '=', 'users.role_id')
+                    ->select('users.*', 'roles.name')
+                    ->where('users.id', '=', $id)
+                    ->get();
+
+        return $roles;
+    }
+
+    public static function nameUser($id){
+        return User::where('id', $id)->value('name');
     }
 
 }

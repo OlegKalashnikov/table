@@ -47,7 +47,7 @@
                                     <select id="employee_id" class="form-control select2-show-search{{ $errors->has('employee_id') ? ' is-invalid' : '' }}" name="employee_id">
                                         <option value="">Выберите сотрудника</option>
                                         @foreach($employees as $employee)
-                                            <option value="{{$employee->id}}">{{$employee->employee}}</option>
+                                            <option value="{{$employee->id}}" >{{$employee->employee}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('employee_id'))

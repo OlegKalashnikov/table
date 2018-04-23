@@ -71,6 +71,20 @@ class TabelgraphicController extends Controller
             'myemployees' => $myemployees,
             'month' => $month,
             'departments' => $departments,
+            'selected' => FALSE,
+        ]);
+    }
+
+    public function showFormCreateEmployeeId($id){
+        $user_id = Auth::user()->id;
+        $month = Carbon::now()->format('m');
+        $myemployees = Myemployee::where('id', $id)->get();
+        $departments = Department::all();
+        return view('graphics.employee.create', [
+            'myemployees' => $myemployees,
+            'month' => $month,
+            'departments' => $departments,
+            'selected' => TRUE,
         ]);
     }
 

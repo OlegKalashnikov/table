@@ -23,4 +23,5 @@ class Myemployee extends Model
     public function department(){
         return $this->hasOne('App\Department', 'id', 'department_id');
     }
+
 }

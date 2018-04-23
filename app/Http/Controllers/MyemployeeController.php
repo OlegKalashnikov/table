@@ -8,6 +8,7 @@ use App\Graphic;
 use App\Myemployee;
 use App\Position;
 use App\Tabelgraphic;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,16 @@ class MyemployeeController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
+        foreach(User::roles(Auth::user()->id) as $user){
+            if($user->name === 'admin'){
+                $myEmployees = Myemployee::all();
+            }else{
+                $myEmployees = Myemployee::where('user_id', Auth::user()->id)->get();
+            }
+        }
+
         return view('employee.show', [
-            'myEmployees' => Myemployee::where('user_id', Auth::user()->id)->get()
+            'myEmployees' => $myEmployees,
         ]);
     }
 
