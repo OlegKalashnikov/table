@@ -74,7 +74,8 @@
                                 <td>
                                     <a href="{{route('my.employee.edit', $employee->id)}}" title="Редактировать" class="btn waves-effect waves-light btn-info"><i class="fa fa-edit"></i></a>
                                     <a href="{{route('graphic.create.employee.id', $employee->id)}}" title="Формировать данные для графика и табеля" class="btn waves-effect waves-light btn-info"><i class="fa fa-calendar-check-o"></i></a>
-                                    <a href="" title="Уволить" data-toggle="modal" data-target="#modaldestroy" class="btn waves-effect waves-light btn-danger" data-modalid="{{$employee->id}}"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('dismissal.create.employee', $employee->id)}}" title="Уволить" class="btn waves-effect waves-light btn-warning"><i class="fa fa-times-rectangle-o"></i></a>
+                                    @can('action', Auth::user())<a href="" title="Уволить" data-toggle="modal" data-target="#modaldestroy" class="btn waves-effect waves-light btn-danger" data-modalid="{{$employee->id}}"><i class="fa fa-trash"></i></a>@endcan
                                 </td>
                             </tr>
                             @endforeach

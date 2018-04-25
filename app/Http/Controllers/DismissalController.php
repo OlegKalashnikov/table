@@ -37,6 +37,12 @@ class DismissalController extends Controller
         ]);
     }
 
+    public function createEmployee($id){
+        return view('dismassal.createEmployee', [
+            'myemployee' => Myemployee::find($id),
+        ]);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse

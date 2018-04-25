@@ -163,6 +163,7 @@ Route::group(['middleware' => 'auth'], function(){
      * */
     Route::get('dismissal', 'DismissalController@index')->name('dismissal');
     Route::get('dismissal/create', 'DismissalController@create')->name('dismissal.create');
+    Route::get('dismissal/create/{id}/employee', 'DismissalController@createEmployee')->name('dismissal.create.employee');
     Route::post('dismissal/add', 'DismissalController@store')->name('dismissal.store');
     Route::get('dismissal/{id}/edit', 'DismissalController@edit')->name('dismissal.edit');
     Route::patch('dismissal/{id}/update', 'DismissalController@update')->name('dismissal.update');

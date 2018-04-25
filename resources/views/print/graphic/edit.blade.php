@@ -56,11 +56,15 @@
                                             <tr>
                                                 <td>{{$number++}}</td>
                                                 <td>{{$key}}</td>
-                                                <td>{{$key}}</td>
-                                                @foreach($graphic as $item)
-                                                    @foreach($item as $count => $td)
-                                                        <td>{{$td[$count]}}</td>
-                                                    @endforeach
+                                                <td>---</td>
+                                                @foreach($graphic as $value)
+                                                    @if($value == 9999)
+                                                        <td> </td>
+                                                    @else
+                                                        {{dump($value[$count++])}}
+                                                        <td>{{$value[$count++]}}<br>{{$value[$count++]}}</td>
+                                                    @endif
+
                                                 @endforeach
                                             </tr>
                                             @endforeach
