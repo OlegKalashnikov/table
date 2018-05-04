@@ -45,22 +45,10 @@ class PrintGraphicController extends Controller
             }
         }
         $graphics = Tabelemployee::select('myemployee_id', 'department_id', 'begining_of_the_work_day', 'end_of_the_work_day')->where('department_id', $department_id)->where('month', $month)->where('user_id', $user_id)->get();
-        //dd($graphics);
-//        print("<pre>");
-//        print_r($graphics);
-//        print("</pre>");
         foreach($graphics as $graphic){
-            //$tmp[$graphic->myemployee_id][] = $graphic->department_id;
-//            $tmp[$graphic->myemployee_id][] = $graphic->month;
-//            $tmp[$graphic->myemployee_id][] = $graphic->hours_per_day;
-//            $tmp[$graphic->myemployee_id][] = $graphic->number_of_working_days;
             $tmp[$graphic->myemployee_id][] = $graphic->begining_of_the_work_day;
             $tmp[$graphic->myemployee_id][] = $graphic->end_of_the_work_day;
-//            $tmp[$graphic->myemployee_id][] = $graphic->monthly_rate_of_hours;
         }
-//        print("<pre>");
-//        print_r($tmp);
-//        print("</pre>");
         return view('print.graphic.edit', [
             'graphics' => $tmp,//$graphics,
             'department' => Tabelemployee::department($department_id),

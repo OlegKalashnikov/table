@@ -55,17 +55,18 @@
                                             @foreach($graphics as $key => $graphic)
                                             <tr>
                                                 <td>{{$number++}}</td>
-                                                <td>{{$key}}</td>
-                                                <td>---</td>
-                                                @foreach($graphic as $value)
-                                                    @if($value == 9999)
-                                                        <td> </td>
-                                                    @else
-                                                        {{dump($value[$count++])}}
-                                                        <td>{{$value[$count++]}}<br>{{$value[$count++]}}</td>
-                                                    @endif
+                                                <td>{{\App\Myemployee::printGraphicEmployee($key)}}</td>
+                                                <td>{{\App\Myemployee::printGraphicPosition($key)}}</td>
+                                                @for($count=0, $day = $countDay*2;$count<$day; $count++)
+                                                    @if($graphic[$count] == 9999)
+                                                        <td>
+                                                            <?php $count++; ?>
+                                                        </td>
 
-                                                @endforeach
+                                                    @else
+                                                        <td>{{$graphic[$count++]}}<br>{{$graphic[$count]}}</td>
+                                                    @endif
+                                                @endfor
                                             </tr>
                                             @endforeach
                                         </tbody>
